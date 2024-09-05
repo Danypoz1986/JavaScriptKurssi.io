@@ -1,7 +1,7 @@
 {
-  "name": "jsprojekti1",
+  "name": "workshop1",
   "version": "1.0.0",
-  "main": "projekti1.js",
+  "main": "workshop1.js",
   "scripts": {
     "start": "http-server -p 3000",
     "dev": "http-server -p 3000", 
