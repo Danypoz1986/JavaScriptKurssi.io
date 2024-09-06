@@ -9,4 +9,4 @@ function displayRandomImages(){
     return randomImage
 }
 
-document.write('<img src = "' + displayRandomImages() + '" alt = "random image">')
+document.write('<img src = ' + displayRandomImages() + ' alt = "random image">')
