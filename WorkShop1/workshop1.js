@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const activityForm = document.getElementById('activity-form');
     const addButton = document.getElementById('add-button');
     const clearButton = document.getElementById('clear-button');
     const activityList = document.getElementById('activity-list');
@@ -71,14 +70,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function resetFormFields() {
-        try {
             document.getElementById('activity').selectedIndex = 0; 
             document.getElementById('description').value = '';
             document.getElementById('hours').value = '';
             console.log('Kentät tyhjennetty');
-        } catch (error) {
-            console.error('Virhe kenttien tyhjentämisessä:', error);
-        }
     }
 
     function showErrorMessage(message, color) {
