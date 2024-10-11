@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Daily Journal</title>
+</head>
+<body>
+    <header>
+        <div class="profile">
+            <img src="307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt=""> 
+            <span class="profile-text">Moi käyttäjä</span>
+        </div>
+        <div class="date">
+            <span id="currentDate"></span> 
+        </div>
+        <div class="weather">
+            <span id="weatherCondition"></span> 
+            <video id="weatherVideo" width="150" autoplay muted loop></video>
+            <img id="defaultImage" width="150" style="display: none;" alt="Default weather image">
+        </div>
+    </header>
+
+    <!-- Journal container to hold the journal entry -->
+    <div class="journal-container">
+        <div id="output"></div> <!-- Journal entry will be displayed here -->
+    </div>
+
+    <!-- Form container to hold the journal form -->
+    <div class="form-container">
+        <div class="form-box">
+            <form id="activitiesForm" action="/submit" method="POST">
+                <label for="mood">Today's mood</label>
+                <input type="text" id="mood" name="mood" placeholder="Enter your mood">   
+                <label for="activities">Activities</label>
+                <ul id="activitiesList">
+                    <li> <input type="text" name="activities" placeholder="Enter a new activity"></li>    
+                </ul> 
+                <p id="addActivity" style="cursor: pointer;">&nbsp&nbsp&nbsp&nbsp&nbsp + Add an activity</p>
+                <label for="description">Activities description:</label>
+                <textarea id="description" name="description" rows="8" cols="50" placeholder="Enter your activity description here"></textarea>
+
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
