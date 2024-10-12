@@ -81,7 +81,7 @@ async function getWeather() {
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/sade|tihkusade/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17013-278400948_small.mp4'; // Sateinen video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17013-278400948_small%20(online-video-cutter.com).mp4'; // Sateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/pilvi/.test(weatherDescription)) {
@@ -93,11 +93,11 @@ async function getWeather() {
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/lumisade/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/191855-891315497_small.mp4'; // Lumisateinen video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/7092-198553594_small.mp4'; // Lumisateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/sumu|usva/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/103840-664507395_small.mp4'; // Sumuinen video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/mixkit-a-light-mist-continuously-flows-at-a-fast-pace-50938-hd-ready.mp4'; // Sumuinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else {
