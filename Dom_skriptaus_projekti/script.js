@@ -1,4 +1,4 @@
-const apiKey = 'd34033ba69e9564878317e0a33950821'; // Korvaa omalla OpenWeatherMap API-avaimellasi
+const apiKey = 'd34033ba69e9564878317e0a33950821';
 const city = 'vantaa'; // Korvaa haluamallasi kaupunkinimellä
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fi`;
 
