@@ -1,11 +1,22 @@
 /* Style for the header */
 header {
     display: flex;
-    background-color: #f0f0f0;
+    background-color: #40F99B; /* Vibrant green */
     align-items: center;
     height: 130px;
     width: 100%;
     top: 0;
+    padding-bottom:  20px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(64, 249, 155, 0.3); /* Soft green shadow */
+    border-bottom: 3px solid #2CAF6F; /* Harmonious darker green for the border */
+}
+
+header .profile-text,
+header .date span,
+header .weather span {
+    color: #2D2D2D; /* Ensure all header text is this color */
 }
 
 .profile{
@@ -35,7 +46,7 @@ header {
 
 /* Container for the journal entry */
 .journal-container {
-    width: 20%; /* Adjust the width to control the space */
+    width: 15%; /* Adjust the width to control the space */
     margin-left: 5%; /* Slightly more spacing to the left */
     float: left; /* Keeps journal container to the left */
     margin-top: 5%;
@@ -157,14 +168,29 @@ button:hover {
 }
 
 /* Weather section styling */
-.weather {
-    text-align: right;
+#weatherCondition {
     margin-right: 50px;
+
+}
+
+#weatherVideo{
+    left: 10px;
+    position: relative;
 }
 
 .weather span {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    color: #4a4a4a; /* Softer dark color for text */
+    font-size: 20px; /* Increase font size for better readability */
+    font-weight: 500; /* Slightly bold font */
+    text-align: center; /* Center the text */
+    font-family: 'Georgia', 'Times New Roman', serif; /* Elegant serif font */
+    letter-spacing: 0.5px; /* Slight letter spacing for a polished look */
+}
+
+#weatherVideo{
+    margin-right: -1000px;
 }
 
 .weather video {
@@ -173,11 +199,11 @@ button:hover {
 
 /* Global styling */
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #333;
+    position: relative;
+    z-index: 1;
+    background-color: #F08700; /* Ensures contrast between the body and header */
 }
 
 

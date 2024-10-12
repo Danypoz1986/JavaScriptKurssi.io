@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Daily Journal</title>
+    <title>Päiväkirja</title>
 </head>
 <body>
     <header>
@@ -18,32 +18,32 @@
         <div class="weather">
             <span id="weatherCondition"></span> 
             <video id="weatherVideo" width="150" autoplay muted loop></video>
-            <img id="defaultImage" width="150" style="display: none;" alt="Default weather image">
+            <img id="defaultImage" width="150" style="display: none;" alt="Oletus sääkuva">
         </div>
     </header>
 
-    <!-- Journal container to hold the journal entry -->
+    <!-- Päiväkirjakontti, jossa päiväkirjan merkintä -->
     <div class="journal-container">
-        <div id="output"></div> <!-- Journal entry will be displayed here -->
+        <div id="output"></div> <!-- Päiväkirjamerkintä näytetään tässä -->
     </div>
 
-    <!-- Form container to hold the journal form -->
+    <!-- Lomakekontti, jossa päiväkirjalomake -->
     <div class="form-container">
         <div class="form-box">
             <form id="activitiesForm" action="/submit" method="POST">
-                <label for="mood">Today's mood</label>
-                <input type="text" id="mood" name="mood" placeholder="Enter your mood">   
-                <label for="activities">Activities</label>
+                <label for="mood">Tämän päivän fiilis</label>
+                <input type="text" id="mood" name="mood" placeholder="Kirjoita mielialasi">   
+                <label for="activities">Toiminnot</label>
                 <ul id="activitiesList">
-                    <li> <input type="text" name="activities" placeholder="Enter a new activity"></li>    
+                    <li> <input type="text" name="activities" placeholder="Lisää uusi toiminto"></li>    
                 </ul> 
-                <p id="addActivity" style="cursor: pointer;">&nbsp&nbsp&nbsp&nbsp&nbsp + Add an activity</p>
+                <p id="addActivity" style="cursor: pointer;">&nbsp&nbsp&nbsp&nbsp&nbsp + Lisää toiminto</p>
 
-                <label for="description">Activities description:</label>
-                <textarea id="description" name="description" rows="8" cols="50" placeholder="Enter your activity description here"></textarea>
+                <label for="description">Toimintojen kuvaus:</label>
+                <textarea id="description" name="description" rows="8" cols="50" placeholder="Kirjoita toimintojen kuvaus tähän"></textarea>
 
                 <br>
-                <button type="submit">Submit</button>
+                <button type="submit">Lähetä</button>
             </form>
         </div>
     </div>

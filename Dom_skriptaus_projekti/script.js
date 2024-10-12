@@ -1,26 +1,26 @@
-const apiKey = 'd34033ba69e9564878317e0a33950821'; // Replace with your OpenWeatherMap API key
-const city = 'vantaa'; // Replace with the city name you want to check
+const apiKey = 'd34033ba69e9564878317e0a33950821'; // Korvaa omalla OpenWeatherMap API-avaimellasi
+const city = 'vantaa'; // Korvaa haluamallasi kaupunkinimellä
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fi`;
 
-// Set current date on the page
+// Aseta nykyinen päivämäärä sivulle
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const dateStr = new Date().toLocaleDateString('fi-EU', options);
 document.getElementById('currentDate').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
 
-// Hide the journal container by default
+// Piilota päiväkirjakontti oletuksena
 document.getElementById('output').style.display = 'none';
 
-// Add new activity input field dynamically
+// Lisää uusi aktiviteetti-kenttä dynaamisesti
 document.getElementById('addActivity').addEventListener('click', function () {
     addActivityField();
 });
 
-// Add initial delete button logic for activity fields
+// Lisää alkuperäinen poistonappi logiikka aktiviteettikentille
 function addDeleteButton(li) {
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete activity';
+    deleteButton.textContent = 'Poista aktiviteetti';
     deleteButton.classList.add('delete-activity');
-    deleteButton.style.marginBottom = '20px'
+    deleteButton.style.marginBottom = '20px';
     deleteButton.style.backgroundColor = 'red';
     deleteButton.style.float = 'right';
     deleteButton.addEventListener('click', function (event) {
@@ -33,7 +33,7 @@ function addDeleteButton(li) {
     li.appendChild(deleteButton);
 }
 
-// Function to update the visibility of delete buttons
+// Päivitä poistonappien näkyvyys
 function updateDeleteButtons() {
     const activityFields = document.getElementsByName('activities');
     const deleteButtons = document.querySelectorAll('.delete-activity');
@@ -45,145 +45,160 @@ function updateDeleteButtons() {
     }
 }
 
-// Function to add a new activity field
+// Lisää uusi aktiviteettikenttä
 function addActivityField() {
     const li = document.createElement('li');
     const newActivityInput = document.createElement('input');
     newActivityInput.setAttribute('type', 'text');
     newActivityInput.setAttribute('name', 'activities');
-    newActivityInput.setAttribute('placeholder', 'Enter a new activity');
+    newActivityInput.setAttribute('placeholder', 'Lisää uusi aktiviteetti');
     li.appendChild(newActivityInput);
-    addDeleteButton(li); // Add delete button to the new field
+    addDeleteButton(li); // Lisää poistonappi uuteen kenttään
     document.getElementById('activitiesList').appendChild(li);
-    updateDeleteButtons(); // Update the delete button visibility
+    updateDeleteButtons(); // Päivitä poistonappien näkyvyys
 }
 
-// Ensure that delete buttons are correctly set when the page loads
+// Varmista, että poistonapit on asetettu oikein sivun latautuessa
 document.addEventListener('DOMContentLoaded', function () {
-    updateDeleteButtons(); // Ensure delete button is hidden initially if only one field is present
+    updateDeleteButtons(); // Varmista, että poistonappi on aluksi piilossa, jos vain yksi kenttä on olemassa
 });
 
-// Fetch and display weather data
+// Hae ja näytä säätiedot
 async function getWeather() {
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
+        console.log(data);
         const weatherDescription = data.weather[0].description.toLowerCase();
-        document.getElementById('weatherCondition').textContent = weatherDescription;
+        const temperature = data.main.temp.toFixed(1)
+        document.getElementById('weatherCondition').textContent = `${temperature}°C, ${weatherDescription}`;
 
         const weatherVideo = document.getElementById('weatherVideo');
         const defaultImage = document.getElementById('defaultImage');
 
         if (/aurinko|selkeä/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/47126-450995482_small.mp4'; // Sunny video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/blue%20sky%20with%20sunshine%20and%20clouds%204k_preview%20(online-video-cutter.com).mp4'; // Aurinkoinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/sade|tihkusade/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17013-278400948_small.mp4'; // Rainy video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17013-278400948_small.mp4'; // Sateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/pilvi/.test(weatherDescription)) {
-            if (/osittain/.test(weatherDescription)) {
-                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17723-284467863_small.mp4'; // Partly cloudy video
+            if (/osittain|haja|ajo|vähä/.test(weatherDescription)) {
+                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17723-284467863_small.mp4'; // Osittain pilvinen video
             } else {
-                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/230528_small.mp4'; // Cloudy video
+                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/230528_small.mp4'; // Pilvinen video
             }
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/lumisade/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/191855-891315497_small.mp4'; // Snowy video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/191855-891315497_small.mp4'; // Lumisateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/sumu|usva/.test(weatherDescription)) {
-            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/103840-664507395_small.mp4'; // Foggy video
+            weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/103840-664507395_small.mp4'; // Sumuinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else {
             weatherVideo.style.display = 'none';
-            defaultImage.src = 'https://storage.googleapis.com/projektin_saa/a5b9502dec58849b9c964763790675b091743f86.jpg.webp'; // Default image
+            defaultImage.src = 'https://storage.googleapis.com/projektin_saa/a5b9502dec58849b9c964763790675b091743f86.jpg.webp'; // Oletuskuva
             defaultImage.style.display = 'block';
         }
     } catch (error) {
-        console.error('Error fetching the weather data:', error);
+        console.error('Virhe haettaessa säätietoja:', error);
     }
 }
 
-getWeather(); // Fetch weather on page load
+getWeather(); // Hae sää tiedot sivun latautuessa
 
-// Load journal entries from localStorage on page load
+// Lataa päiväkirjamerkinnät localStoragesta sivun latautuessa
 document.addEventListener('DOMContentLoaded', function () {
     const savedEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
     const outputList = document.getElementById('output');
 
-    // Load only the latest entry, if it exists
+    // Lataa vain viimeisin merkintä, jos se on olemassa
     if (savedEntries.length > 0) {
-        const entry = savedEntries[0]; // Ensure only one entry is loaded
+        const entry = savedEntries[0]; // Varmista, että vain yksi merkintä ladataan
         displayJournalEntry(entry.mood, entry.activities, entry.description);
     }
+
+    // Tyhjennä lomake sivun latautuessa (jos ei piilossa)
+    document.getElementById('activitiesForm').reset();
 });
 
-// Function to display the journal entry with styled titles and normal content
+// Funktio näyttää päiväkirjamerkinnän tyylitellyillä otsikoilla ja normaalilla sisällöllä
 function displayJournalEntry(mood, activities, description) {
     const outputList = document.getElementById('output');
     const journalEntry = `
-        <p><span class="journal-title">Today's Mood:</span> <br> ${mood}</p>
-        <p><span class="journal-title">Activities:</span> <br> ${activities.join(', ')}</p>
-        <p><span class="journal-title">Activities Description:</span> <br> ${description}</p>
-        <button class="delete-journal">Delete</button>
+        <p><span class="journal-title">Tämän päivän fiilis:</span> <br> ${mood}</p>
+        <p><span class="journal-title">Toiminnot:</span> <br> ${activities.join(', ')}</p>
+        <p><span class="journal-title">Toimintojen kuvaus:</span> <br> ${description}</p>
+        <button class="delete-journal">Poista merkintä</button>
     `;
 
     outputList.innerHTML = journalEntry;
-    outputList.style.display = 'block'; // Make the journal visible after submitting
+    outputList.style.display = 'block'; // Tee päiväkirja näkyväksi lähettämisen jälkeen
 
-    // Apply red button styling for the delete button
+    // Lisää punaisen poistonapin tyyli
     applyButtonStyles();
 
-    // Add delete functionality to the newly added journal entry
+    // Lisää poistonappitoiminnallisuus vastalisättyyn päiväkirjamerkintään
     document.querySelector('.delete-journal').addEventListener('click', deleteJournalEntry);
 }
 
-// Handle form submission and save journal to localStorage
+// Käsittele lomakkeen lähetys ja tallenna päiväkirjamerkintä localStorageen
 document.getElementById('activitiesForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting
+    event.preventDefault(); // Estä lomakkeen lähetys
 
-    // Get form values
+    // Tarkista, onko päiväkirjamerkintä jo olemassa
+    const existingEntry = JSON.parse(localStorage.getItem('journalEntries'));
+    if (existingEntry && existingEntry.length > 0) {
+        alert("Päiväkirjamerkintä on jo julkaistu. Poista nykyinen merkintä, jotta voit julkaista uuden.");
+        return;
+    }
+
+    // Hae lomakkeen arvot
     const mood = document.getElementById('mood').value.trim();
     const description = document.getElementById('description').value.trim();
     const activities = Array.from(document.getElementsByName('activities')).map(input => input.value.trim());
 
-    // Check if all fields are filled
+    // Tarkista, että kaikki kentät on täytetty
     if (!mood || !description || activities.some(activity => activity === "")) {
-        alert("Please fill in all fields before submitting.");
+        alert("Täytä kaikki kentät ennen lähettämistä.");
         return;
     }
 
-    // Create new journal entry object
+    // Luo uusi päiväkirjamerkintä-objekti
     const newEntry = { mood, activities, description };
 
-    // Save the new journal entry to localStorage
-    localStorage.setItem('journalEntries', JSON.stringify([newEntry])); // Save only one entry
+    // Tallenna uusi päiväkirjamerkintä localStorageen
+    localStorage.setItem('journalEntries', JSON.stringify([newEntry])); // Tallenna vain yksi merkintä
 
-    // Display the new entry with styled titles
+    // Näytä uusi merkintä tyylitellyillä otsikoilla
     displayJournalEntry(mood, activities, description);
 
-    // Clear the form after submission
+    // Älä piilota lomaketta, vaan tyhjennä se lähetyksen jälkeen
     document.getElementById('activitiesForm').reset();
 });
 
-// Function to delete the journal entry
+// Funktio poistaa päiväkirjamerkinnän
 function deleteJournalEntry() {
-    // Clear the journal from localStorage
+    // Tyhjennä päiväkirja localStoragesta
     localStorage.removeItem('journalEntries');
 
-    // Remove the journal entry from the DOM
+    // Poista päiväkirjamerkintä DOMista
     const outputList = document.getElementById('output');
     outputList.innerHTML = '';
-    outputList.style.display = 'none'; // Hide the journal when deleted
+    outputList.style.display = 'none'; // Piilota päiväkirja, kun se on poistettu
 
-    alert("Journal entry deleted. You can now publish a new one.");
+    alert("Päiväkirjamerkintä poistettu. Voit nyt julkaista uuden.");
+
+    // Varmista, että lomake pysyy näkyvissä ja tyhjennä se poistamisen jälkeen
+    document.getElementById('activitiesForm').reset(); // Tyhjennä lomake
 }
 
-// Function to apply red button styles
+// Funktio lisää punaisen poistonapin tyylit
 function applyButtonStyles() {
     const style = document.createElement('style');
     style.innerHTML = `
