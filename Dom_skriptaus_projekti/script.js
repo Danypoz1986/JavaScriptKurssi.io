@@ -171,8 +171,13 @@ document.getElementById('activitiesForm').addEventListener('submit', function (e
     // Luo uusi päiväkirjamerkintä-objekti
     const newEntry = { mood, activities, description };
 
+    localStorage.setItem('journalEntries', JSON.stringify([newEntry])); // Save only one entry
+    
+    // Test: log saved entry
+    console.log('Saved to localStorage:', newEntry);
+
     // Tallenna uusi päiväkirjamerkintä localStorageen
-    localStorage.setItem('journalEntries', JSON.stringify([newEntry])); // Tallenna vain yksi merkintä
+    
 
     // Näytä uusi merkintä tyylitellyillä otsikoilla
     displayJournalEntry(mood, activities, description);
