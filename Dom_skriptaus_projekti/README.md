@@ -13,7 +13,7 @@ Tämä on yksinkertainen **päiväkirjasovellus**, jonka avulla käyttäjät voi
 
 ## Ohjelman toiminta ja keskeiset funktiot
 
-Funktio '''getWeather()''' hakee säätiedot OpenWeatherMap-rajapinnasta, näyttää ne sovelluksessa ja vaihtaa videon sääolosuhteiden perusteella:
+Funktio `getWeather()` hakee säätiedot OpenWeatherMap-rajapinnasta, näyttää ne sovelluksessa ja vaihtaa videon sääolosuhteiden perusteella:
 
 async function getWeather() {
     try {
