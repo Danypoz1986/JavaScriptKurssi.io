@@ -40,3 +40,5 @@ async function getWeather() {
         console.error('Virhe haettaessa säätietoja:', error);
     }
 }
+
+ 
