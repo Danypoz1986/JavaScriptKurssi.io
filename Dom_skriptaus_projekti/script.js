@@ -115,8 +115,7 @@ getWeather(); // Hae sää tiedot sivun latautuessa
 // Lataa päiväkirjamerkinnät localStoragesta sivun latautuessa
 document.addEventListener('DOMContentLoaded', function () {
     const savedEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
-    const outputList = document.getElementById('output');
-
+    
     // Lataa vain viimeisin merkintä, jos se on olemassa
     if (savedEntries.length > 0) {
         const entry = savedEntries[0]; // Varmista, että vain yksi merkintä ladataan

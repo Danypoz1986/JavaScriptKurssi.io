@@ -1,9 +1,8 @@
-/* Style for the header */
 header {
     display: flex;
     background-color: #40F99B; /* Vibrant green */
     align-items: center;
-    height: 130px;
+    height: 120px;
     width: 100%;
     top: 0;
     padding-bottom:  20px;
@@ -13,14 +12,32 @@ header {
     border-bottom: 3px solid #2CAF6F; /* Harmonious darker green for the border */
 }
 
+header h1 {
+    text-align: center;
+    color: #2d2d2d;
+    position: absolute;
+    margin-left: 810px;
+    margin-bottom: 80px;
+    font-family: "Ruge Boogie", cursive;
+    font-weight: 600;
+    font-size: 50px;
+    font-style: normal;
+}
+
 header .profile-text,
-header .date span,
 header .weather span {
     color: #2D2D2D; /* Ensure all header text is this color */
 }
 
+header .date span {
+    color: #2D2D2D;
+    position: absolute;
+}
+
+
 .profile{
     margin-left:10px;
+    margin-top: 70px;
 }
 
 /* Style for the profile section */
@@ -161,22 +178,20 @@ button:hover {
 /* Date text styling */
 .date {
     flex-grow: 1;
-    text-align: center;
     font-size: 18px;
     color: #333;
-    margin-right: 100px;
+    margin-left: 650px;
+    margin-top: 80px;
+    position: relative;
 }
 
 /* Weather section styling */
 #weatherCondition {
-    margin-right: 50px;
-
-}
-
-#weatherVideo{
-    left: 10px;
+    margin-right: 30px;
     position: relative;
+
 }
+
 
 .weather span {
     display: block;
@@ -189,13 +204,19 @@ button:hover {
     letter-spacing: 0.5px; /* Slight letter spacing for a polished look */
 }
 
-#weatherVideo{
-    margin-right: -1000px;
+.weather {
+    margin-top: 10px;
 }
 
-.weather video {
+#weatherVideo{
+    margin-right: 10px;
     border-radius: 5px;
+    position: relative;
+    justify-content: center;
+    left: 20px;
 }
+
+
 
 /* Global styling */
 html, body {
@@ -205,6 +226,3 @@ html, body {
     z-index: 1;
     background-color: #F08700; /* Ensures contrast between the body and header */
 }
-
-
-
