@@ -22,7 +22,7 @@ Funktio `getWeather()` hakee säätiedot OpenWeatherMap-rajapinnasta, näyttää
         const data = await response.json();
         const weatherDescription = data.weather[0].description.toLowerCase();
         const temperature = data.main.temp.toFixed(1);
-        document.getElementById('weatherCondition').textContent = `${temperature}°C, ${weatherDescription}`;
+        document.getElementById('weatherCondition').textContent = ${temperature}°C, ${weatherDescription};
 
         const weatherVideo = document.getElementById('weatherVideo');
         const defaultImage = document.getElementById('defaultImage');
