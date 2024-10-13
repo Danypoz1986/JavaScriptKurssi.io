@@ -159,9 +159,9 @@ document.getElementById('activitiesForm').addEventListener('submit', function (e
 
     // Hae lomakkeen arvot
     const mood = document.getElementById('mood').value.trim();
-    const description = document.getElementById('description').value.trim();
     const activities = Array.from(document.getElementsByName('activities')).map(input => input.value.trim());
-
+    const description = document.getElementById('description').value.trim();
+    
     // Tarkista, että kaikki kentät on täytetty
     if (!mood || !description || activities.some(activity => activity === "")) {
         alert("Täytä kaikki kentät ennen lähettämistä.");
