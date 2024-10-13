@@ -16,7 +16,7 @@ header h1 {
     text-align: center;
     color: #2d2d2d;
     position: absolute;
-    margin-left: 810px;
+    margin-left: 720px;
     margin-bottom: 80px;
     font-family: "Ruge Boogie", cursive;
     font-weight: 600;
@@ -61,28 +61,28 @@ header .date span {
     color: #333;
 }
 
-/* Container for the journal entry */
-.journal-container {
+/* Container for the journal plans entry */
+.journalPlans-container {
     width: 15%; /* Adjust the width to control the space */
     margin-left: 5%; /* Slightly more spacing to the left */
-    float: left; /* Keeps journal container to the left */
+    float: left; /* Keeps journal plans container to the left */
     margin-top: 5%;
     position: relative
 }
 
-.journal-title {
+.journalPlans-title {
     font-family: 'Georgia', 'Times New Roman', Times, serif; /* Elegant serif font */
     font-style: italic; /* Italic text */
     font-weight: bold; /* Make the titles bold */
     color: #333; /* Softer, readable color */
 }
 
-/* Output box for the journal */
+/* Output box for the journal plans*/
 #output {
     background-color: #f9f9f9; /* Light paper color */
     padding: 20px;
     border-radius: 10px;
-    width: 100%; /* Takes full width of journal container */
+    width: 100%; /* Takes full width of journal plans container */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
     position: relative;
@@ -131,9 +131,13 @@ header .date span {
     margin-bottom: 20px;
 }
 
-#addActivity{
+#addActivity {
     margin-top: 0;
     margin-bottom: 50px;
+}
+
+.clickable-text {
+    cursor: pointer;
 }
 
 #activitiesDescription{

@@ -114,12 +114,12 @@ getWeather(); // Hae sää tiedot sivun latautuessa
 
 // Lataa päiväkirjamerkinnät localStoragesta sivun latautuessa
 document.addEventListener('DOMContentLoaded', function () {
-    const savedEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+    const savedEntries = JSON.parse(localStorage.getItem('journalPlansEntries')) || [];
     
     // Lataa vain viimeisin merkintä, jos se on olemassa
     if (savedEntries.length > 0) {
         const entry = savedEntries[0]; // Varmista, että vain yksi merkintä ladataan
-        displayJournalEntry(entry.mood, entry.activities, entry.description);
+        displayJournalPlansEntry(entry.mood, entry.activities, entry.description);
     }
 
     // Tyhjennä lomake sivun latautuessa (jos ei piilossa)
@@ -127,23 +127,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Funktio näyttää päiväkirjamerkinnän tyylitellyillä otsikoilla ja normaalilla sisällöllä
-function displayJournalEntry(mood, activities, description) {
+function displayJournalPlansEntry(mood, activities, description) {
     const outputList = document.getElementById('output');
-    const journalEntry = `
-        <p><span class="journal-title">Tämän päivän fiilis:</span> <br> ${mood}</p>
-        <p><span class="journal-title">Toiminnot:</span> <br> ${activities.join(', ')}</p>
-        <p><span class="journal-title">Toimintojen kuvaus:</span> <br> ${description}</p>
-        <button class="delete-journal">Poista merkintä</button>
+    const journalPlansEntry = `
+        <p><span class="journalPlans-title">Tämän päivän fiilis:</span> <br> ${mood}</p>
+        <p><span class="journalPlans-title">Toiminnot:</span> <br> ${activities.join(', ')}</p>
+        <p><span class="journalPlans-title">Toimintojen kuvaus:</span> <br> ${description}</p>
+        <button class="delete-journalPlans">Poista merkintä</button>
     `;
 
-    outputList.innerHTML = journalEntry;
+    outputList.innerHTML = journalPlansEntry;
     outputList.style.display = 'block'; // Tee päiväkirja näkyväksi lähettämisen jälkeen
 
     // Lisää punaisen poistonapin tyyli
     applyButtonStyles();
 
     // Lisää poistonappitoiminnallisuus vastalisättyyn päiväkirjamerkintään
-    document.querySelector('.delete-journal').addEventListener('click', deleteJournalEntry);
+    document.querySelector('.delete-journalPlans').addEventListener('click', deleteJournalPlansEntry);
 }
 
 // Käsittele lomakkeen lähetys ja tallenna päiväkirjamerkintä localStorageen
@@ -151,7 +151,7 @@ document.getElementById('activitiesForm').addEventListener('submit', function (e
     event.preventDefault(); // Estä lomakkeen lähetys
 
     // Tarkista, onko päiväkirjamerkintä jo olemassa
-    const existingEntry = JSON.parse(localStorage.getItem('journalEntries'));
+    const existingEntry = JSON.parse(localStorage.getItem('journalPlansEntries'));
     if (existingEntry && existingEntry.length > 0) {
         alert("Päiväkirjamerkintä on jo julkaistu. Poista nykyinen merkintä, jotta voit julkaista uuden.");
         return;
@@ -171,7 +171,7 @@ document.getElementById('activitiesForm').addEventListener('submit', function (e
     // Luo uusi päiväkirjamerkintä-objekti
     const newEntry = { mood, activities, description };
 
-    localStorage.setItem('journalEntries', JSON.stringify([newEntry])); // Save only one entry
+    localStorage.setItem('journalPlansEntries', JSON.stringify([newEntry])); // Save only one entry
     
     // Test: log saved entry
     console.log('Saved to localStorage:', newEntry);
@@ -180,16 +180,16 @@ document.getElementById('activitiesForm').addEventListener('submit', function (e
     
 
     // Näytä uusi merkintä tyylitellyillä otsikoilla
-    displayJournalEntry(mood, activities, description);
+    displayJournalPlansEntry(mood, activities, description);
 
     // Älä piilota lomaketta, vaan tyhjennä se lähetyksen jälkeen
     document.getElementById('activitiesForm').reset();
 });
 
 // Funktio poistaa päiväkirjamerkinnän
-function deleteJournalEntry() {
+function deleteJournalPlansEntry() {
     // Tyhjennä päiväkirja localStoragesta
-    localStorage.removeItem('journalEntries');
+    localStorage.removeItem('journalPlansEntries');
 
     // Poista päiväkirjamerkintä DOMista
     const outputList = document.getElementById('output');
@@ -206,7 +206,7 @@ function deleteJournalEntry() {
 function applyButtonStyles() {
     const style = document.createElement('style');
     style.innerHTML = `
-    .delete-journal {
+    .delete-journalPlans {
         background-color: red;
         margin-top: 50px;
         position: absolute;
@@ -219,7 +219,7 @@ function applyButtonStyles() {
         border-radius: 5px;
         cursor: pointer;
     }
-    .delete-journal:hover {
+    .delete-journalPlans:hover {
         background-color: darkred;
     }
     `;

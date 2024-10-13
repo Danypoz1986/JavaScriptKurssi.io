@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
-    <title>Päiväkirja</title>
+    <title>Päivän suunnitelma</title>
 </head>
 <body>
     <header>
@@ -15,7 +15,7 @@
             <img src="307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt=""> 
             <span class="profile-text">Moi käyttäjä</span>
         </div>
-        <h1>Päiväkirja</h1>
+        <h1>Päivän suunnitelma</h1>
         <div class="date">
             <span id="currentDate"></span> 
         </div>
@@ -27,7 +27,7 @@
     </header>
 
     <!-- Päiväkirjakontti, jossa päiväkirjan merkintä -->
-    <div class="journal-container">
+    <div class="journalPlans-container">
         <div id="output"></div> <!-- Päiväkirjamerkintä näytetään tässä -->
     </div>
 
@@ -41,7 +41,7 @@
                 <ul id="activitiesList">
                     <li> <input type="text" name="activities" placeholder="Lisää uusi toiminto"></li>    
                 </ul> 
-                <p id="addActivity" style="cursor: pointer;">&nbsp&nbsp&nbsp&nbsp&nbsp + Lisää toiminto</p>
+                <p id="addActivity">&nbsp&nbsp&nbsp&nbsp&nbsp<span class="clickable-text">+ Lisää toiminto</span></p>
 
                 <label for="description">Toimintojen kuvaus:</label>
                 <textarea id="description" name="description" rows="8" cols="50" placeholder="Kirjoita toimintojen kuvaus tähän"></textarea>

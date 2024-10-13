@@ -1,13 +1,13 @@
-# Päiväkirja Web-sovellus
+# Päivän Suunnitelma Web-sovellus
 
-Tämä on yksinkertainen **päiväkirjasovellus**, jonka avulla käyttäjät voivat tallentaa mielialansa ja päivän aikana tehdyt toiminnot. Sovellus hakee myös säätilan valitusta kaupungista ja näyttää sen yhdessä vastaavan videon tai kuvan kanssa. Päiväkirjamerkinnät tallennetaan selaimen `localStorageen`, jolloin ne pysyvät tallessa seuraavaan käyttökertaan asti.
+Tämä on yksinkertainen **päivän suunnitelmasovellus**, jonka avulla käyttäjät voivat tallentaa mielialansa ja päivän aikana suunnitellut toiminnot. Sovellus hakee myös säätilan valitusta kaupungista ja näyttää sen yhdessä vastaavan videon tai kuvan kanssa. Suunnitelmat tallennetaan selaimen `localStorageen`, jolloin ne pysyvät tallessa seuraavaan käyttökertaan asti.
 
 
 ## Ominaisuudet
 
 - **Säätiedot**: Sovellus hakee säätiedot OpenWeatherMap-rajapinnasta ja näyttää säätilan sekä lämpötilan. Jos sää on aurinkoinen, sateinen, pilvinen tai luminen, näytetään vastaava video.
-- **Dynaamiset toimintokentät**: Käyttäjä voi lisätä tai poistaa toimintoja dynaamisesti lomakkeeseen.
-- **Päiväkirjamerkintöjen hallinta**: Käyttäjä voi tallentaa, näyttää ja poistaa päiväkirjamerkintöjä selaimen `localStoragesta`.
+- **Dynaamiset toimintokentät**: Käyttäjä voi lisätä tai poistaa toiminnot dynaamisesti lomakkeeseen.
+- **Päivän suunnitelman hallinta**: Käyttäjä voi tallentaa, näyttää ja poistaa päivän suunnitelmia selaimen `localStoragesta`.
 - **Interaktiivinen lomake**: Lomakkeen avulla käyttäjä voi syöttää mielialansa, toiminnot ja niiden kuvauksen.
 
 
@@ -29,7 +29,6 @@ async function getWeather() {
         const weatherVideo = document.getElementById('weatherVideo');
         const defaultImage = document.getElementById('defaultImage');
 
-        // Videon vaihtaminen säätilan mukaan
         if (/aurinko|selkeä/.test(weatherDescription)) {
             weatherVideo.src = 'aurinkoinen_video_url';
         } else if (/sade|tihkusade/.test(weatherDescription)) {
@@ -59,37 +58,42 @@ function addActivityField() {
     newActivityInput.setAttribute('name', 'activities');
     newActivityInput.setAttribute('placeholder', 'Lisää uusi aktiviteetti');
     li.appendChild(newActivityInput);
-    addDeleteButton(li); // Lisää poistonappi
+    addDeleteButton(li);
     document.getElementById('activitiesList').appendChild(li);
 }
 ```
 
-- **Päiväkirjamerkinnän tallentaminen ja näyttäminen**
+- **Suunnitelman tallentaminen ja näyttäminen**
 
-Funktio `displayJournalEntry()` näyttää päiväkirjamerkinnän käyttäjän syöttämillä tiedoilla. Tämä merkintä tallennetaan localStorageen:
+Funktio `displayJournalPlansEntry()` näyttää suunnitelman käyttäjän syöttämillä tiedoilla ja tallentaa sen localStorageen:
 
 
 ```javascript
-function displayJournalEntry(mood, activities, description) {
+function displayJournalPlansEntry(mood, activities, description) {
     const outputList = document.getElementById('output');
-    const journalEntry = `
-        <p><span class="journal-title">Tämän päivän fiilis:</span> ${mood}</p>
-        <p><span class="journal-title">Toiminnot:</span> ${activities.join(', ')}</p>
-        <p><span class="journal-title">Toimintojen kuvaus:</span> ${description}</p>
-        <button class="delete-journal">Poista merkintä</button>
+    const journalPlansEntry = `
+        <p><span class="journalPlans-title">Tämän päivän fiilis:</span> <br> ${mood}</p>
+        <p><span class="journalPlans-title">Toiminnot:</span> <br> ${activities.join(', ')}</p>
+        <p><span class="journalPlans-title">Toimintojen kuvaus:</span> <br> ${description}</p>
+        <button class="delete-journalPlans">Poista merkintä</button>
     `;
-    outputList.innerHTML = journalEntry;
+
+    outputList.innerHTML = journalPlansEntry;
     outputList.style.display = 'block';
+
+    applyButtonStyles();
+
+    document.querySelector('.delete-journalPlans').addEventListener('click', deleteJournalPlansEntry);
 }
 ```
 
-- **Päiväkirjamerkinnän poistaminen**
+- **Suunnitelman poistaminen**
 
-Funktio `deleteJournalEntry()` poistaa päiväkirjamerkinnän selaimen localStoragesta ja päivittää käyttöliittymän:
+Funktio `deleteJournalPlansEntry()` poistaa tallennetun suunnitelman:
 
 ```javascript
-function deleteJournalEntry() {
-    localStorage.removeItem('journalEntries');
+function deleteJournalPlansEntry() {
+    localStorage.removeItem('journalPlansEntries');
     const outputList = document.getElementById('output');
     outputList.innerHTML = '';
     outputList.style.display = 'none';
@@ -97,9 +101,10 @@ function deleteJournalEntry() {
 }
 ```
 
+
 ## Johtopäätökset
 
-Tämä Päiväkirja Web-sovellus tarjoaa käyttäjille yksinkertaisen ja helppokäyttöisen tavan tallentaa päivittäisiä tapahtumia ja mielialoja. Sääolosuhteisiin reagoiva video tekee sovelluksesta interaktiivisemman ja visuaalisesti houkuttelevamman. Käyttäjien päiväkirjamerkinnät tallentuvat selaimen localStorageen, mikä takaa sen, että tiedot säilyvät sovelluksen sulkemisen jälkeen. Dynaamisesti lisättävät ja poistettavat toimintokentät antavat käyttäjälle joustavuutta syöttää tarkempia tietoja päivän toiminnoista.
+Tämä "Päivän Suunnitelma" Web-sovellus tarjoaa käyttäjille helppokäyttöisen tavan tallentaa päivän suunnitelmat ja mielialat. Sääolosuhteisiin reagoiva video tekee sovelluksesta visuaalisesti houkuttelevamman ja interaktiivisemman. Suunnitelmat tallentuvat selaimen localStorageen, joten tiedot säilyvät sovelluksen sulkemisen jälkeen. Dynaamiset toimintokentät antavat käyttäjälle joustavuutta syöttää tarkempia tietoja päivän toiminnoista.
 Linkit:
 
 - Koodi GitHubissa: [Projektin GitHub-repositorio]()
