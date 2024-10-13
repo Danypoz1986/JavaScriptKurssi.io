@@ -11,18 +11,14 @@ Tämä on yksinkertainen **päiväkirjasovellus**, jonka avulla käyttäjät voi
 - **Interaktiivinen lomake**: Lomakkeen avulla käyttäjä voi syöttää mielialansa, toiminnot ja niiden kuvauksen.
 
 
-## Ohjelman toiminta ja keskeiset funktiot
-
-Funktio `getWeather()` hakee säätiedot OpenWeatherMap-rajapinnasta, näyttää ne sovelluksessa ja vaihtaa videon sääolosuhteiden perusteella:
-
-<code>
-    async function getWeather() {
+```javascript
+async function getWeather() {
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
         const weatherDescription = data.weather[0].description.toLowerCase();
         const temperature = data.main.temp.toFixed(1);
-        document.getElementById('weatherCondition').textContent = ${temperature}°C, ${weatherDescription};
+        document.getElementById('weatherCondition').textContent = `${temperature}°C, ${weatherDescription}`;
 
         const weatherVideo = document.getElementById('weatherVideo');
         const defaultImage = document.getElementById('defaultImage');
@@ -44,4 +40,3 @@ Funktio `getWeather()` hakee säätiedot OpenWeatherMap-rajapinnasta, näyttää
         console.error('Virhe haettaessa säätietoja:', error);
     }
 }
-</code>
