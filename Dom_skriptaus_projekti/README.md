@@ -109,6 +109,6 @@ Linkit:
 
 - Koodi GitHubissa: [Projektin GitHub-repositorio](https://danypoz1986.github.io/JavaScriptKurssi.io/Dom_skriptaus_projekti/index.html)
 - Esittelyvideo: [Katso esittelyvideo](https://storage.googleapis.com/projektin_video/Registrazione%20%237.mp4)
-- Raportti projektista: [Lataa projektiraportti]()
+- Raportti projektista: [Lataa projektiraportti](https://storage.googleapis.com/dom_projektiraportti/Dom_projektiraportti.docx)
 
 Yllä olevista linkeistä voit tarkastella projektin koodia, katsella esittelyvideota ja lukea tarkemman raportin projektista.
