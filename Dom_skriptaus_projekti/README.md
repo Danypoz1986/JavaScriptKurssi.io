@@ -107,8 +107,8 @@ function deleteJournalPlansEntry() {
 Tämä "Päivän Suunnitelma" Web-sovellus tarjoaa käyttäjille helppokäyttöisen tavan tallentaa päivän suunnitelmat ja mielialat. Sääolosuhteisiin reagoiva video tekee sovelluksesta visuaalisesti houkuttelevamman ja interaktiivisemman. Suunnitelmat tallentuvat selaimen localStorageen, joten tiedot säilyvät sovelluksen sulkemisen jälkeen. Dynaamiset toimintokentät antavat käyttäjälle joustavuutta syöttää tarkempia tietoja päivän toiminnoista.
 Linkit:
 
-- Koodi GitHubissa: [Projektin GitHub-repositorio]()
-- Esittelyvideo: [Katso esittelyvideo]()
+- Koodi GitHubissa: [Projektin GitHub-repositorio](https://danypoz1986.github.io/JavaScriptKurssi.io/Dom_skriptaus_projekti/index.html)
+- Esittelyvideo: [Katso esittelyvideo](https://storage.googleapis.com/projektin_video/Registrazione%20%237.mp4)
 - Raportti projektista: [Lataa projektiraportti]()
 
 Yllä olevista linkeistä voit tarkastella projektin koodia, katsella esittelyvideota ja lukea tarkemman raportin projektista.
