@@ -73,7 +73,7 @@ async function getWeather() {
         const temperature = data.main.temp.toFixed(1)
         const ephemeris = new Date(data.sys.sunset * 1000)
         const sun_rise = new Date(data.sys.sunrise * 1000)
-        current_time = new Date()
+        const current_time = new Date()
         document.getElementById('weatherCondition').textContent = `${temperature}°C, ${weatherDescription}`;
 
         const weatherVideo = document.getElementById('weatherVideo');
