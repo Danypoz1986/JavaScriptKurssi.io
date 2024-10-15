@@ -71,13 +71,22 @@ async function getWeather() {
         console.log(data);
         const weatherDescription = data.weather[0].description.toLowerCase();
         const temperature = data.main.temp.toFixed(1)
+        const ephemeris = new Date(data.sys.sunset * 1000)
+        const sun_rise = new Date(data.sys.sunrise * 1000)
+        current_time = new Date()
         document.getElementById('weatherCondition').textContent = `${temperature}°C, ${weatherDescription}`;
 
         const weatherVideo = document.getElementById('weatherVideo');
         const defaultImage = document.getElementById('defaultImage');
 
         if (/aurinko|selkeä/.test(weatherDescription)) {
+            console.log(data.sys.sunrise*1000)
+            if(current_time > ephemeris || current_time < sun_rise){
+            weatherVideo.src = "https://storage.googleapis.com/projektin_saa/vecteezy_full-moon-on-black-sky_6721222.mov"    
+            }
+            else{
             weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/blue%20sky%20with%20sunshine%20and%20clouds%204k_preview%20(online-video-cutter.com).mp4'; // Aurinkoinen video
+            }
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
         } else if (/sade|tihkusade/.test(weatherDescription)) {
