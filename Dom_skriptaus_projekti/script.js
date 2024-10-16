@@ -71,7 +71,7 @@ async function getWeather() {
         console.log(data);
         const weatherDescription = data.weather[0].description.toLowerCase();
         const temperature = data.main.temp.toFixed(1)
-        const ephemeris = new Date(data.sys.sunset * 1000)
+        const sun_set = new Date(data.sys.sunset * 1000)
         const sun_rise = new Date(data.sys.sunrise * 1000)
         const current_time = new Date()
         document.getElementById('weatherCondition').textContent = `${temperature}°C, ${weatherDescription}`;
@@ -81,7 +81,7 @@ async function getWeather() {
 
         if (/aurinko|selkeä/.test(weatherDescription)) {
             console.log(data.sys.sunrise*1000)
-            if(current_time > ephemeris || current_time < sun_rise){
+            if(current_time > sun_set || current_time < sun_rise){
             weatherVideo.src = "https://storage.googleapis.com/projektin_saa/vecteezy_full-moon-on-black-sky_6721222.mov"    
             }
             else{
@@ -95,7 +95,7 @@ async function getWeather() {
             defaultImage.style.display = 'none';
         } else if (/pilvi/.test(weatherDescription)) {
             if (/osittain|haja|ajo|vähä/.test(weatherDescription)) {
-                if(current_time > ephemeris || current_time < sun_rise){
+                if(current_time > sun_set || current_time < sun_rise){
                 weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/225775_small.mp4'; // Osittain pilvinen video yöllä
                 }
                 else {
