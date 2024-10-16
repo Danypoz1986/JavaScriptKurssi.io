@@ -95,7 +95,12 @@ async function getWeather() {
             defaultImage.style.display = 'none';
         } else if (/pilvi/.test(weatherDescription)) {
             if (/osittain|haja|ajo|vähä/.test(weatherDescription)) {
-                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17723-284467863_small.mp4'; // Osittain pilvinen video
+                if(current_time > ephemeris || current_time < sun_rise){
+                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/225775_small.mp4'; // Osittain pilvinen video yöllä
+                }
+                else {
+                weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17723-284467863_small.mp4'; // Osittain pilvinen video    
+                }
             } else {
                 weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/230528_small.mp4'; // Pilvinen video
             }
