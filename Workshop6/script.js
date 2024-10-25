@@ -88,7 +88,7 @@ function loadAndParseXML() {
         .catch(error => console.error('Error fetching the resource:', error));
 }
 
-function loadAndParseNews(feedUrl) {
+function loadAndParseNews(feedUrl, sourceName) {
     var proxy = "https://corsproxy.io/?";
 
     fetch(proxy + encodeURIComponent(feedUrl))
@@ -112,11 +112,11 @@ function loadAndParseNews(feedUrl) {
             table.style.width = "100%";
             table.style.borderCollapse = "collapse";
 
-            // Create table headers for the news feed
+            // Create table headers for the news feed, including the source name (YAHOO or ILTALEHTI)
             var tableHeader = `
                 <thead>
                     <tr>
-                        <th style="padding: 10px; text-align: left;">News Title</th>
+                        <th style="padding: 10px; text-align: left;">${sourceName}'s News Title</th>
                     </tr>
                 </thead>
             `;
