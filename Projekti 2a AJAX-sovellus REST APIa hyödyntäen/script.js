@@ -44,7 +44,8 @@ window.onload = moveImage;
 
 function searchFlight(){
     const flightNumber = document.getElementById("flightNumberInput").value;
-    const apiUrl = `https://corsproxy.io/?https://aerodatabox.p.rapidapi.com/flights/search/term?q=${flightNumber}`; // URL with flight number
+    const apiUrl = `https://aerodatabox.p.rapidapi.com/flights/search/term?q=${flightNumber}`; // URL with flight number
+ 
 
     fetch(apiUrl, {
        method: "GET",
@@ -87,6 +88,8 @@ function displayFlightData(data) {
         <p><strong>Departure:</strong> ${data[0]?.departure?.airport?.name || "N/A"} at ${data[0]?.departure?.scheduledTimeLocal || "N/A"}</p>
         <p><strong>Arrival:</strong> ${data[0]?.arrival?.airport?.name || "N/A"} at ${data[0]?.arrival?.scheduledTimeLocal || "N/A"}</p>
     `;
+
+    document.getElementsByTagName("h2")[0].style.color = "yellow"
 
     resultsContainer.appendChild(flightInfo);
 }
