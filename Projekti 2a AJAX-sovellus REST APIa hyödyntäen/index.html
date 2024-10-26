@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Flight Info</title>
+</head>
+<body>
+    <div class="container-fluid py-4" id="header">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Flight Info</h1>
+            </div>
+        </div>
+    </div>    
+    <div class="container py-4" id="searchContainer">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter flight number" aria-label="Flight number" id="flightNumberInput">
+                    <button class="btn btn-primary" onclick="searchFlight()">Search</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <img src="file.png" alt="Airplane" id="bottomLeftImage">
+    <audio id="airplaneSound" src="airplaneSound.mp3"></audio>
+    <script src="script.js"></script>   
+</body>
+</html>

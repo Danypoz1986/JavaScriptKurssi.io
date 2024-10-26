@@ -1,0 +1,22 @@
+#header {
+    background-color: #4381c1;
+    height: 150px;
+}
+
+body {
+    background-color: #0C2340;
+}
+
+.input-group {
+    padding-top: 50px;
+}
+
+#bottomLeftImage {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 300px;
+    height: auto;
+    opacity: 0; /* Start hidden */
+    transition: opacity 3s ease-in-out; /* Smooth fade-in and fade-out */
+}
