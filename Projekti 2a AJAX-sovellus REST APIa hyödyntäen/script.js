@@ -4,8 +4,8 @@ function moveImage() {
     let posX = 10; // Starting left position
     let posY = 10; // Starting bottom position
     const interval = 20; // Milliseconds between each move step
-    const speedX = 4.2; // Horizontal speed
-    const speedY = 2; // Vertical speed
+    const speedX = 8.4; // Horizontal speed
+    const speedY = 4; // Vertical speed
 
     // Fade in the airplane and play sound
     image.style.opacity = "1"; // Make the airplane visible
