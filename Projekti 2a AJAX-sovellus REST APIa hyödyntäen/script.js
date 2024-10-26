@@ -39,57 +39,116 @@ function moveImage() {
     }, interval);
 }
 
-// Trigger the movement and fade-in effect when the page loads
-window.onload = moveImage;
+window.onload = function() {
+    moveImage();
+};
 
-function searchFlight(){
+function searchFlight() {
     const flightNumber = document.getElementById("flightNumberInput").value;
-    const apiUrl = `https://aerodatabox.p.rapidapi.com/flights/search/term?q=${flightNumber}`; // URL with flight number
- 
+    const apiUrl = `https://aerodatabox.p.rapidapi.com/flights/Number/${flightNumber}?withAircraftImage=false&withLocation=true`;
 
     fetch(apiUrl, {
        method: "GET",
        headers: {
-        "X-RapidAPI-Host": "aerodatabox.p.rapidapi.com",
-        "X-RapidAPI-Key": "7b9ac5ecd9msh9b73602d1653c0ap1e16cajsn942e05cca554"
-       } 
+        "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
+        "x-rapidapi-key": "7b9ac5ecd9msh9b73602d1653c0ap1e16cajsn942e05cca554"
+       }
     })
     .then(response => {
-        if (!response.ok){
-            throw new Error("Network response was not ok " +response.statusText);
+        if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
         }
-
-        return response.json()
+        return response.json();
     })
     .then(data => {
-        console.log(data);
+        console.log("Full response data:", data); // Log full response to understand structure
 
-        displayFlightData(data);
+        // Check if data has the expected items
+        if (Array.isArray(data) && data.length > 0) {
+            displayFlightData(data[0]); // Pass only the first item if data is an array
+        } else if (data.items && data.items.length > 0) {
+            displayFlightData(data.items[0]); // If data has items array, use its first element
+        } else {
+            alert("No flight information available for this flight number.");
+        }
     })
     .catch(error => {
         console.error("There has been a problem with your fetch operation", error);
-        alert("Flight information could not be retrieved. Please try again");
+        alert("Flight information could not be retrieved. Please try again.");
     });
-     
 }
 
-// Function to display flight data on the page
-function displayFlightData(data) {
+function displayFlightData(flightData) {
     const resultsContainer = document.getElementById("searchContainer");
-
-    resultsContainer.innerHTML = "";
+    resultsContainer.innerHTML = ""; // Clear previous results
 
     const flightInfo = document.createElement("div");
     flightInfo.classList.add("flight-info");
 
+    // Log the full flightData to inspect its structure
+    console.log("Full flightData object:", flightData);
+
+    // Check if departure and arrival data are available
+    const departureAirport = flightData?.departure?.airport?.name || "N/A";
+    const departureTime = flightData?.departure?.scheduledTimeLocal || "N/A";
+    const arrivalAirport = flightData?.arrival?.airport?.name || "N/A";
+    const arrivalTime = flightData?.arrival?.scheduledTimeLocal || "N/A";
+    const last_updated_utc = flightData?.lastUpdatedUtc || "N/A";
+
+    // Placeholder for lat/lon - adjust the path once we inspect the console output
+    const lat = flightData?.location?.lat;
+    const lon = flightData?.location?.lon;
+
+    console.log("Latitude (before adjustment):", lat);
+    console.log("Longitude (before adjustment):", lon);
+
+    // Display flight information
     flightInfo.innerHTML = `
         <h2>Flight Information</h2>
-        <p><strong>Flight Number:</strong> ${data[0]?.flight?.number || "N/A"}</p>
-        <p><strong>Departure:</strong> ${data[0]?.departure?.airport?.name || "N/A"} at ${data[0]?.departure?.scheduledTimeLocal || "N/A"}</p>
-        <p><strong>Arrival:</strong> ${data[0]?.arrival?.airport?.name || "N/A"} at ${data[0]?.arrival?.scheduledTimeLocal || "N/A"}</p>
+        <p><strong>Flight Number:</strong> ${flightData.number || "N/A"}</p>
+        <p><strong>Departure:</strong> ${departureAirport} at ${departureTime}</p>
+        <p><strong>Arrival:</strong> ${arrivalAirport} at ${arrivalTime}</p>
+        <p><strong>Last updated UTC:</strong> ${last_updated_utc}</p>
+        <p><strong>Latitude and Longitude:</strong> ${lat || "N/A"}, ${lon || "N/A"}</p>
+        <p><strong>Actual Location:</strong> <span id="location-placeholder">Loading...</span></p>
     `;
 
-    document.getElementsByClassName("flight-info").style.color = "yellow"
-
+    flightInfo.style.color = 'yellow';
     resultsContainer.appendChild(flightInfo);
+
+    // Geocode if lat and lon are defined and valid
+    if (lat !== undefined && lon !== undefined && !isNaN(parseFloat(lat)) && !isNaN(parseFloat(lon))) {
+        getPlaceFromCoordinates(parseFloat(lat), parseFloat(lon));
+    } else {
+        document.getElementById("location-placeholder").textContent = "Location not available.";
+        console.log("Latitude and/or Longitude are not valid or available.");
+    }
+}
+
+
+
+function getPlaceFromCoordinates(lat, lon) {
+    const apiKey = 'AIzaSyBHd6QXPEb55mCzIx9FjucTLiXM8_ZqXxE'; // Your Google API Key
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`;
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const locationElement = document.getElementById("location-placeholder");
+            if (data.results && data.results.length > 0) {
+                const place = data.results[0].formatted_address; // Full address
+                locationElement.textContent = place;
+            } else {
+                locationElement.textContent = "No location found for these coordinates.";
+            }
+        })
+        .catch(error => {
+            console.error("There was a problem with the geocoding request:", error);
+            document.getElementById("location-placeholder").textContent = "Location not available.";
+        });
 }
