@@ -89,7 +89,7 @@ function displayFlightData(data) {
         <p><strong>Arrival:</strong> ${data[0]?.arrival?.airport?.name || "N/A"} at ${data[0]?.arrival?.scheduledTimeLocal || "N/A"}</p>
     `;
 
-    document.getElementsByTagName("h2")[0].style.color = "yellow"
+    document.getElementsByClassName("flight-info").style.color = "yellow"
 
     resultsContainer.appendChild(flightInfo);
 }
