@@ -204,3 +204,8 @@ function getPlaceFromCoordinates(lat, lon) {
             document.getElementById("location-placeholder").textContent = "Location not available.";
         });
 } 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const audio = document.getElementById("airplaneSound");
+    audio.volume = 1.0; // Set the volume to maximum (1.0 is the max)
+});
