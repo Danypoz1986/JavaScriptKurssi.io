@@ -1,6 +1,7 @@
 #header {
     background-color: #4381c1;
     height: 150px;
+    color: #00FFFF;
 }
 
 body {
@@ -19,4 +20,4 @@ body {
     height: auto;
     opacity: 0; /* Start hidden */
     transition: opacity 3s ease-in-out; /* Smooth fade-in and fade-out */
-}
+} 

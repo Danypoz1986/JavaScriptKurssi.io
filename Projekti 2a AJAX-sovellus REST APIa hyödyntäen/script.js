@@ -41,17 +41,18 @@ function moveImage() {
 
 window.onload = function() {
     moveImage();
+    document.getElementById("flightNumberInput").value = "";
 };
 
 function searchFlight() {
     const flightNumber = document.getElementById("flightNumberInput").value;
-    const apiUrl = `https://aerodatabox.p.rapidapi.com/flights/Number/${flightNumber}?withAircraftImage=false&withLocation=true`;
+    const apiUrl = `https://api.magicapi.dev/api/v1/aedbx/aerodatabox/flights/Number/${flightNumber}?withAircraftImage=true&withLocation=true`;
 
     fetch(apiUrl, {
        method: "GET",
        headers: {
-        "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
-        "x-rapidapi-key": "7b9ac5ecd9msh9b73602d1653c0ap1e16cajsn942e05cca554"
+        "accept": "application/json",
+        "x-magicapi-key": "cm2qrk87w0001m903iklnapqv" // Updated header key
        }
     })
     .then(response => {
@@ -78,47 +79,99 @@ function searchFlight() {
     });
 }
 
+
 function displayFlightData(flightData) {
-    const resultsContainer = document.getElementById("searchContainer");
-    resultsContainer.innerHTML = ""; // Clear previous results
+    const flightInfo = document.querySelector(".flight-info"); // Select existing flight-info div
+    flightInfo.innerHTML = ""; // Clear previous content if any
 
-    const flightInfo = document.createElement("div");
-    flightInfo.classList.add("flight-info");
-
-    // Log the full flightData to inspect its structure
     console.log("Full flightData object:", flightData);
 
-    // Check if departure and arrival data are available
     const departureAirport = flightData?.departure?.airport?.name || "N/A";
-    const departureTime = flightData?.departure?.scheduledTimeLocal || "N/A";
+    const departureScheduledTime = flightData?.departure?.scheduledTime?.utc || "N/A";
     const arrivalAirport = flightData?.arrival?.airport?.name || "N/A";
-    const arrivalTime = flightData?.arrival?.scheduledTimeLocal || "N/A";
+    const arrivalScheduledTime = flightData?.arrival?.scheduledTime?.utc || "N/A";
     const last_updated_utc = flightData?.lastUpdatedUtc || "N/A";
-
-    // Placeholder for lat/lon - adjust the path once we inspect the console output
+    const altitude = flightData?.location?.altitude?.meter || "N/A";
+    const groundSpeed = flightData?.location?.groundSpeed?.kmPerHour || "N/A";
+    const status = flightData?.status || "N/A";
+    const isCargo = flightData?.isCargo || "N/A";
     const lat = flightData?.location?.lat;
     const lon = flightData?.location?.lon;
+    const aircraftImageUrl = flightData?.aircraft?.image?.url || "";
+    const aircraftModel = flightData?.aircraft?.model || "N/A";
+    const aircraftRegistration = flightData?.aircraft?.reg;
 
-    console.log("Latitude (before adjustment):", lat);
-    console.log("Longitude (before adjustment):", lon);
-
-    // Display flight information
+    // Display flight information in the existing flight-info div
     flightInfo.innerHTML = `
-        <h2>Flight Information</h2>
-        <p><strong>Flight Number:</strong> ${flightData.number || "N/A"}</p>
-        <p><strong>Departure:</strong> ${departureAirport} at ${departureTime}</p>
-        <p><strong>Arrival:</strong> ${arrivalAirport} at ${arrivalTime}</p>
-        <p><strong>Last updated UTC:</strong> ${last_updated_utc}</p>
-        <p><strong>Latitude and Longitude:</strong> ${lat || "N/A"}, ${lon || "N/A"}</p>
-        <p><strong>Actual Location:</strong> <span id="location-placeholder">Loading...</span></p>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h2 style="text-align: center">Flight Information:</h2><br>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Flight Number:</th>
+                        <td>${flightData.number || "N/A"}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Departure airport and scheduled time (UTC):</th>
+                        <td>${departureAirport} at ${departureScheduledTime}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Arrival airport and scheduled time (UTC):</th>
+                        <td>${arrivalAirport} at ${arrivalScheduledTime}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status:</th>
+                        <td>${status}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last updated UTC:</th>
+                        <td>${last_updated_utc}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Latitude and Longitude:</th>
+                        <td>${lat || "N/A"}, ${lon || "N/A"}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Actual Location:</th>
+                        <td><span id="location-placeholder">Loading...</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Aircraft Model:</th>
+                        <td>${aircraftModel}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Registration:</th>
+                        <td>${aircraftRegistration}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Altitude:</th>
+                        <td>${altitude} m</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ground speed:</th>
+                        <td>${groundSpeed} km/h</td>
+                    </tr>
+                    ${isCargo === true || isCargo === "true" ? `
+                        <tr>
+                            <th scope="row">Flight Type:</th>
+                            <td><strong>Cargo Flight</strong></td>
+                        </tr>` : ""}
+                    <tr>
+                        <th scope="row">Aircraft image:</th>
+                        <td style="padding:0">${aircraftImageUrl ? `<img src="${aircraftImageUrl}" alt="Airplane Image" style="width: 100%; height: auto;">` : "Not available"}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
     `;
 
     flightInfo.style.color = 'yellow';
-    resultsContainer.appendChild(flightInfo);
 
-    // Geocode if lat and lon are defined and valid
-    if (lat !== undefined && lon !== undefined && !isNaN(parseFloat(lat)) && !isNaN(parseFloat(lon))) {
-        getPlaceFromCoordinates(parseFloat(lat), parseFloat(lon));
+    // Display location if lat/lon are available
+    if (!isNaN(lat) && !isNaN(lon)) {
+        getPlaceFromCoordinates(lat, lon);
     } else {
         document.getElementById("location-placeholder").textContent = "Location not available.";
         console.log("Latitude and/or Longitude are not valid or available.");
@@ -126,9 +179,8 @@ function displayFlightData(flightData) {
 }
 
 
-
 function getPlaceFromCoordinates(lat, lon) {
-    const apiKey = 'AIzaSyBHd6QXPEb55mCzIx9FjucTLiXM8_ZqXxE'; // Your Google API Key
+    const apiKey = 'AIzaSyBHd6QXPEb55mCzIx9FjucTLiXM8_ZqXxE'; // Google API Key
     const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -141,7 +193,7 @@ function getPlaceFromCoordinates(lat, lon) {
         .then(data => {
             const locationElement = document.getElementById("location-placeholder");
             if (data.results && data.results.length > 0) {
-                const place = data.results[0].formatted_address; // Full address
+                const place = data.results[0].formatted_address;
                 locationElement.textContent = place;
             } else {
                 locationElement.textContent = "No location found for these coordinates.";
@@ -151,4 +203,4 @@ function getPlaceFromCoordinates(lat, lon) {
             console.error("There was a problem with the geocoding request:", error);
             document.getElementById("location-placeholder").textContent = "Location not available.";
         });
-}
+} 
