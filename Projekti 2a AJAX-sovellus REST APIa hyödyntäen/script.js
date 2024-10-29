@@ -145,7 +145,7 @@ function displayFlightData(flightDataArray) {
                 <table class="table table-bordered table-striped">
                     <tbody>
                         <tr><th scope="row">Flight Number:</th><td>${flightData.number || "N/A"}</td></tr>
-                        <tr><th scope="row">Departure airport and scheduled (revised / runway) time UTC:</th><td>${departureAirport} at ${departureScheduledTime} 
+                        <tr><th scope="row">Departure airport and scheduled (revised / runway) time UTC:</th><td>${departureAirport} at ${departureScheduledTime}<br> 
                         (${departureRevisedTime} / ${departureRunwayTime})</td></tr>
                         <tr><th scope="row">Arrival airport and scheduled (predicted) time UTC:</th><td>${arrivalAirport} at ${arrivalScheduledTime}<br>(${arrivalPredictedTime})</td></tr>
                         <tr><th scope="row">Status:</th><td>${status}</td></tr>
