@@ -15,20 +15,63 @@
             </div>
         </div>
     </div>    
-    <div class="container py-4" id="searchContainer">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter flight number" aria-label="Flight number" id="flightNumberInput">
-                    <button class="btn btn-primary" onclick="searchFlight()">Search</button>
-                </div>
+
+    <div class="container" id="searchContainer">
+        <!-- Table with 4 search forms -->
+        <div class="field-container">
+            <div class="input-group field" id="numberField">
+                <input type="text" class="form-control" placeholder="Enter flight number" aria-label="flight number" id="flightNumberInput">
+                <button class="btn btn-primary" onclick="searchFlight()">Search</button>
+            </div>
+            <div class="input-group field" id="regField" style="visibility: hidden; position: absolute;">
+                <input type="text" class="form-control" placeholder="Enter reg" aria-label="reg" id="flightRegInput">
+                <button class="btn btn-primary" onclick="searchFlight()">Search</button>
+            </div>
+            <div class="input-group field" id="callSignField" style="visibility: hidden; position: absolute;">
+                <input type="text" class="form-control" placeholder="Enter call sign" aria-label="callSign" id="flightCallSignInput">
+                <button class="btn btn-primary" onclick="searchFlight()">Search</button>
+            </div>
+            <div class="input-group field" id="icao24Field" style="visibility: hidden; position: absolute;">
+                <input type="text" class="form-control" placeholder="Enter Icao24" aria-label="Icao24" id="flightIcao24Input">
+                <button class="btn btn-primary" onclick="searchFlight()">Search</button>
+            </div>
+        </div>
+        <h3 style="text-align: center;">Search by:</h3>
+        <!-- Checkboxes centered below search field -->
+        <div class="checkbox-group">
+            <div>
+                <input type="radio" name="searchType" id="number" onclick="toggleField(this, 'numberField')">
+                <label for="number" style="margin-left: 5px;">Number</label>
+            </div>
+            <div>
+                <input type="radio" name="searchType" id="reg" onclick="toggleField(this, 'regField')">
+                <label for="reg" style="margin-left: 5px;">Reg</label>
+            </div>
+            <div>
+                <input type="radio" name="searchType" id="callSign" onclick="toggleField(this, 'callSignField')">
+                <label for="callSign" style="margin-left: 5px;">Call Sign</label>
+            </div>
+            <div>
+                <input type="radio" name="searchType" id="icao24" onclick="toggleField(this, 'icao24Field')">
+                <label for="icao24" style="margin-left: 5px;">Icao24</label>
             </div>
         </div>
     </div> 
+
     <div class="container-fluid py-4 flight-info"></div>
+
     
     <img src="file.png" alt="Airplane" id="bottomLeftImage">
     <audio id="airplaneSound" src="airplaneSound.mp3" autoplay></audio>
+
+    <div class="container-fluid py-4" id="footer">
+        <div class="row">
+            <div class="col text-center">
+                <img src="International_Civil_Aviation_Organization_logo.svg.png" alt="logo" id="footerImage">
+            </div>
+        </div>
+    </div>
+        
     <script src="script.js"></script>   
 </body>
 </html>
