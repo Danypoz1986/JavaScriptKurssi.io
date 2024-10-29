@@ -105,6 +105,9 @@ function searchFlight() {
 }
 
 function displayFlightData(flightDataArray) {
+
+    console.log("Flight data (raw JSON):", JSON.stringify(flightDataArray, null, 2));
+
     FLIGHT_INFO_CONTAINER.innerHTML = `
         <div class="row justify-content-center mb-4">
             <div class="col-12 col-md-8 col-lg-6">
@@ -118,8 +121,11 @@ function displayFlightData(flightDataArray) {
     dataArray.forEach((flightData, index) => {
         const departureAirport = flightData?.departure?.airport?.name || "N/A";
         const departureScheduledTime = flightData?.departure?.scheduledTime?.utc || "N/A";
+        const departureRevisedTime = flightData?.departure?.revisedTime?.utc || "N/A";
+        const departureRunwayTime = flightData?.departure?.runwayTime?.utc || "N/A";
         const arrivalAirport = flightData?.arrival?.airport?.name || "N/A";
         const arrivalScheduledTime = flightData?.arrival?.scheduledTime?.utc || "N/A";
+        const arrivalPredictedTime = flightData?.arrival?.predictedTime?.utc || "N/A";
         const last_updated_utc = flightData?.lastUpdatedUtc || "N/A";
         const altitude = flightData?.location?.altitude?.meter || "N/A";
         const groundSpeed = flightData?.location?.groundSpeed?.kmPerHour || "N/A";
@@ -139,8 +145,9 @@ function displayFlightData(flightDataArray) {
                 <table class="table table-bordered table-striped">
                     <tbody>
                         <tr><th scope="row">Flight Number:</th><td>${flightData.number || "N/A"}</td></tr>
-                        <tr><th scope="row">Departure airport and scheduled time (UTC):</th><td>${departureAirport} at ${departureScheduledTime}</td></tr>
-                        <tr><th scope="row">Arrival airport and scheduled time (UTC):</th><td>${arrivalAirport} at ${arrivalScheduledTime}</td></tr>
+                        <tr><th scope="row">Departure airport and scheduled (revised / runway) time UTC:</th><td>${departureAirport} at ${departureScheduledTime} 
+                        (${departureRevisedTime} / ${departureRunwayTime})</td></tr>
+                        <tr><th scope="row">Arrival airport and scheduled (predicted) time UTC:</th><td>${arrivalAirport} at ${arrivalScheduledTime}<br>(${arrivalPredictedTime})</td></tr>
                         <tr><th scope="row">Status:</th><td>${status}</td></tr>
                         <tr><th scope="row">Last updated UTC:</th><td>${last_updated_utc}</td></tr>
                         <tr><th scope="row">Latitude and Longitude:</th><td>${lat || "N/A"}, ${lon || "N/A"}</td></tr>
