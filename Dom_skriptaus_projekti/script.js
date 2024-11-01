@@ -89,7 +89,7 @@ async function getWeather() {
             }
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
-        } else if (/sade|tihkusade/.test(weatherDescription)) {
+        } else if (/sade|tihkusade|kev/.test(weatherDescription)) {
             weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/17013-278400948_small%20(online-video-cutter.com).mp4'; // Sateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
@@ -106,7 +106,7 @@ async function getWeather() {
             }
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
-        } else if (/lumisade/.test(weatherDescription)) {
+        } else if (/lumisade|kev/.test(weatherDescription)) {
             weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/7092-198553594_small.mp4'; // Lumisateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
