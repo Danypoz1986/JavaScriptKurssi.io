@@ -191,9 +191,8 @@ button:hover {
 
 /* Weather section styling */
 #weatherCondition {
-    margin-right: 30px;
     position: relative;
-
+    text-align: right;
 }
 
 
@@ -209,6 +208,8 @@ button:hover {
 }
 
 .weather {
+    justify-content: center;
+    margin-right: 50px;
     margin-top: 10px;
 }
 
