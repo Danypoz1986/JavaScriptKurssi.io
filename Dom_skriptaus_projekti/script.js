@@ -106,7 +106,7 @@ async function getWeather() {
             }
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
-        } else if (/lumi|lumisade|kev/.test(weatherDescription)) {
+        } else if (/lumi|lumisade|kev|pieni/.test(weatherDescription)) {
             weatherVideo.src = 'https://storage.googleapis.com/projektin_saa/7092-198553594_small.mp4'; // Lumisateinen video
             weatherVideo.style.display = 'block';
             defaultImage.style.display = 'none';
