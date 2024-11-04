@@ -49,3 +49,9 @@ Tämä sovellus käyttää AeroDataBox API:ta reaaliaikaisten lentotietojen hake
        "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
        "x-rapidapi-key": "YOUR_API_KEY_HERE"
    }
+
+## Linkit
+
+- [Projektiraportti](linkki_raporttiin)
+- [Videoesitys](linkki_videoon)
+- [Sovelluksen verkkosivu](https://rad-madeleine-8333d5.netlify.app)
