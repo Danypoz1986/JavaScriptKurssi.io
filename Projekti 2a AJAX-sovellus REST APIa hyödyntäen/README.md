@@ -1,49 +1,49 @@
 # Flight Info App
 
-The Flight Info App allows users to search for flight information by entering various identifiers such as flight number, registration number, call sign, or ICAO24 code. The app fetches data from the AeroDataBox API, displaying flight details including departure and arrival times, aircraft model, altitude, ground speed, and more.
+Flight Info App antaa käyttäjille mahdollisuuden hakea lentotietoja syöttämällä eri tunnisteita, kuten lennon numero, rekisterinumero, kutsutunnus tai ICAO24-koodi. Sovellus hakee tietoja AeroDataBox API:sta ja näyttää lentotiedot, kuten lähtö- ja saapumisajat, lentokonemallin, korkeuden, maanopeuden ja paljon muuta.
 
-## Features
+## Ominaisuudet
 
-- **Search by Multiple Identifiers**: Users can search flights by flight number, registration number, call sign, or ICAO24.
-- **Live Flight Data**: Displays live flight data retrieved from AeroDataBox API, including aircraft details and location information.
-- **Animated UI Elements**: Includes a moving airplane image and sound effect for a more dynamic user experience.
-- **Responsive Design**: Built using Bootstrap to ensure a responsive design across different screen sizes.
+- **Haku useilla eri tunnisteilla**: Käyttäjät voivat hakea lentoja lennon numeron, rekisterinumeron, kutsutunnuksen tai ICAO24:n perusteella.
+- **Reaaliaikaiset lentotiedot**: Näyttää reaaliaikaiset lentotiedot AeroDataBox API:sta, mukaan lukien lentokoneen yksityiskohdat ja sijaintitiedot.
+- **Animoidut käyttöliittymäelementit**: Sisältää liikkuvan lentokonekuvan ja ääniefektin, joka tekee käyttäjäkokemuksesta dynaamisemman.
+- **Responsiivinen suunnittelu**: Rakennettu käyttämällä Bootstrapia, jotta ulkoasu on responsiivinen eri näyttöko'oilla.
 
-## Technologies Used
+## Käytetyt teknologiat
 
-- **HTML**: Structure of the app
-- **CSS (Bootstrap)**: Styling and layout, including custom styles
-- **JavaScript**: Logic for fetching flight data, displaying information, and handling animations
-- **API**: Uses AeroDataBox API to retrieve live flight information
+- **HTML**: Sovelluksen rakenne
+- **CSS (Bootstrap)**: Tyylit ja ulkoasu, mukaan lukien mukautetut tyylit
+- **JavaScript**: Logiikka lentotietojen hakuun, tietojen näyttämiseen ja animaatioiden hallintaan
+- **API**: Käyttää AeroDataBox API:ta lentotietojen hakemiseen
 
-## How to Use
+## Käyttöohjeet
 
-1. **Open the App**: Load the `index.html` file in a web browser.
-2. **Enter Flight Details**: Choose a search type (Number, Reg, Call Sign, ICAO24) and enter the corresponding identifier in the search field.
-3. **Click Search**: Click the "Search" button to fetch and display flight information.
-4. **View Results**: Flight details will be displayed, including departure and arrival times, aircraft model, altitude, ground speed, and other information.
-5. **Animated Airplane Icon**: The airplane icon will animate on the screen upon loading, adding a visual effect.
+1. **Avaa sovellus**: Lataa `index.html` tiedosto verkkoselaimeen.
+2. **Syötä lentotiedot**: Valitse hakutyyppi (Numero, Rekisteri, Kutsutunnus, ICAO24) ja syötä vastaava tunniste hakukenttään.
+3. **Klikkaa Hae**: Klikkaa "Search" painiketta hakeaksesi ja näyttääksesi lentotiedot.
+4. **Näytä tulokset**: Lentotiedot näytetään, mukaan lukien lähtö- ja saapumisajat, lentokonemalli, korkeus, maanopeus ja muut tiedot.
+5. **Animoitu lentokoneikoni**: Lentokoneikoni liikkuu näytöllä sovelluksen latautuessa, lisäten visuaalista tehostetta.
 
-## Files
+## Tiedostot
 
-- `index.html`: The main HTML file that structures the app's layout.
-- `styles.css`: Custom CSS file for additional styling beyond Bootstrap.
-- `script.js`: JavaScript file for the app's logic, including API calls and UI interactions.
-- `README.md`: Documentation file (this file).
+- `index.html`: Pääasiallinen HTML-tiedosto, joka määrittää sovelluksen rakenteen.
+- `styles.css`: Mukautettu CSS-tiedosto lisätyyleille Bootstrapin ohella.
+- `script.js`: JavaScript-tiedosto sovelluksen logiikkaa varten, mukaan lukien API-kutsut ja käyttöliittymän toiminnot.
+- `README.md`: Dokumentaatiotiedosto (tämä tiedosto).
 
-## Requirements
+## Vaatimukset
 
-To run the Flight Info app, you need:
+Jotta voit käyttää Flight Info App -sovellusta, tarvitset:
 
-- A web browser (Google Chrome, Firefox, Safari, or Edge)
-- Internet connection (for accessing the API)
+- Verkkoselaimen (Google Chrome, Firefox, Safari tai Edge)
+- Internet-yhteyden (API-yhteyksiä varten)
 
-## API Setup
+## API-asetukset
 
-This app uses the AeroDataBox API to fetch live flight data. Make sure to:
+Tämä sovellus käyttää AeroDataBox API:ta reaaliaikaisten lentotietojen hakemiseen. Varmista seuraavat vaiheet:
 
-1. Obtain an API key from [AeroDataBox](https://rapidapi.com/aerodatabox/api/aerodatabox).
-2. Replace the placeholder key in the `script.js` file:
+1. Hanki API-avain [AeroDataBox](https://rapidapi.com/aerodatabox/api/aerodatabox) -sivustolta.
+2. Korvaa `script.js` -tiedostossa oleva avain seuraavalla tavalla:
    ```javascript
    headers: {
        "x-rapidapi-host": "aerodatabox.p.rapidapi.com",
