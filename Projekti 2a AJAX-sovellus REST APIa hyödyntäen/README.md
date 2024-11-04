@@ -52,6 +52,6 @@ Tämä sovellus käyttää AeroDataBox API:ta reaaliaikaisten lentotietojen hake
 
 ## Linkit
 
-- [Projektiraportti](linkki_raporttiin)
+- [Projektiraportti](https://storage.cloud.google.com/dokumentit/Flight%20info.docx)
 - [Videoesitys](linkki_videoon)
 - [Sovelluksen verkkosivu](https://rad-madeleine-8333d5.netlify.app)
