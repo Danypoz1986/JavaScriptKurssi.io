@@ -31,6 +31,19 @@ Flight Info App antaa käyttäjille mahdollisuuden hakea lentotietoja syöttäm�
 - `script.js`: JavaScript-tiedosto sovelluksen logiikkaa varten, mukaan lukien API-kutsut ja käyttöliittymän toiminnot.
 - `README.md`: Dokumentaatiotiedosto (tämä tiedosto).
 
+## JavaScript-toiminnot
+
+- `moveImage()`: Animaatio, joka liikuttaa lentokoneikonia näytöllä ja toistaa ääniefektin. 
+  Kuvake haalistuu pois, kun se saavuttaa tietyn sijainnin, lisäten visuaalista elävyyttä käyttöliittymään.
+- `searchFlight()`: Käynnistää API-haun valitun hakutyypin perusteella (lennon numero, rekisteri, kutsutunnus tai ICAO24). 
+  Noutaa lentotiedot ja kutsuu displayFlightData-funktiota, jos tietoja löytyy, tai näyttää ilmoituksen, jos tietoja ei ole saatavilla.
+- `displayFlightData(flightDataArray)`: Saa API
+  vastauksena lentotiedot, jäsentää tärkeimmät tiedot (kuten lähtö-, saapumis- ja lentokoneen tiedot) ja esittää ne selkeästi taulukkomuodossa.
+- `getPlaceFromCoordinates(lat, lon, locationPlaceholderId)`: Käyttää sijaintitietoja (leveys- ja pituusaste) API-kutsun tekemiseen Google Mapsin Geocoding API.
+  Tämä API palauttaa helposti ymmärrettävän osoitteen, joka näytetään lentotietojen sijaintiosiossa.
+- `toggleField(radio, fieldId)`: Säätää syöttökenttien näkyvyyttä valitun hakutyypin perusteella. 
+  Kun valitaan hakutyyppi (radio-painikkeella), vastaava kenttä tulee näkyviin ja muut piilotetaan, mikä pitää käyttöliittymän selkeänä ja käyttäjäystävällisenä.
+  
 ## Vaatimukset
 
 Jotta voit käyttää Flight Info App -sovellusta, tarvitset:
