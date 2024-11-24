@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ennio Morricone Tribute</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div id="cinema-container">
+    <!-- Header -->
+    <header>
+      <h1>Tribute to Ennio Morricone</h1>
+      <div class="table-container">
+        <table>
+          <tr>
+            <td><h1>MOVIES:</h1></td>
+          </tr>  
+          <tr>
+            <td><a href="#hall-1" style="color: #FFD700; text-decoration: none;">HALL 1: Once Upon a Time in the West - Sergio leone (1968)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-2" style="color: #FFD700; text-decoration: none;">HALL 2: Nuovo Cinema Paradiso - Giuseppe Tornatore (1988)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-3" style="color: #FFD700; text-decoration: none;">HALL 3: Once Upon a Time in America - Sergio Leone (1984)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-4" style="color: #FFD700; text-decoration: none;">HALL 4: Malèna - Giuseppe Tornatore (2000)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-5" style="color: #FFD700; text-decoration: none;">HALL 5: For a Few Dollars More - Sergio Leone (1965)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-6" style="color: #FFD700; text-decoration: none;">HALL 6: A Fistful of Dollars - Sergio Leone (1964)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-7" style="color: #FFD700; text-decoration: none;">HALL 7: Sacco e Vanzetti - Giuliano Montaldo (1971)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-8" style="color: #FFD700; text-decoration: none;">HALL 8: Le Professionnel - Georges Lautner (1981)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-9" style="color: #FFD700; text-decoration: none;">HALL 9: The Good, the Bad and the Ugly - Sergio Leone (1966)</a></td>
+          </tr>
+          <tr>
+            <td><a href="#hall-10" style="color: #FFD700; text-decoration: none;">HALL 10: Le Marginal - Jacques Deray (1983)</a></td>
+          </tr>
+        </table>  
+
+        <img src="assets/images/ennio-morricone.webp" alt="Tribute Image">
+
+        <table>
+          <tr>
+            <td><h1>MUSIC:</h1></td>
+          </tr>  
+          <tr>
+            <td>Man with a Harmonica - Ennio Morricone (1968)</td>
+          </tr>
+          <tr>
+            <td>Cinema Paradiso Main Theme - Ennio Morricone (with Andrea Morricone) (1988)</td>
+          </tr>
+          <tr>
+            <td>Deborah's Theme + Childhood Memories - Ennio Morricone (1984)</td>
+          </tr>
+          <tr>
+            <td>Malèna Main Theme - Ennio Morricone (2000)</td>
+          </tr>
+          <tr>
+            <td>For a Few Dollars More (Main Title) - Ennio Morricone (1965)</td>
+          </tr>
+          <tr>
+            <td>A Fistful of Dollars Theme - Ennio Morricone (1964)</td>
+          </tr>
+          <tr>
+            <td>Here's to You - Ennio Morricone (vocals by Joan Baez) (1971) </td>
+          </tr>
+          <tr>
+            <td>Chi Mai - Ennio Morricone (1981)</td>
+          </tr>
+          <tr>
+            <td>The Ecstasy of Gold (or Main Theme) - Ennio Morricone (1966)</td>
+          </tr>
+          <tr>
+            <td>Le Marginal (Main Theme) - Ennio Morricone (1983)</td>
+          </tr>
+        </table>
+      </div>   
+    </header>
+    
+    <!-- Cinema Background -->
+    <div class="cinema-background">
+      <div id="halls">
+        <!-- Hall 1 -->
+        <div class="hall" id="hall-1">
+          <div class="video-container">
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/Once upon a time in the West (1968) - Final duel (HD).mp4" id="video-1"></video>
+            </div>  
+            <button class="play-btn" data-video-id="video-1">▶</button>
+            <button class="pause-btn" data-video-id="video-1" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-1" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-1" style="display: none;">⏩ Forward</button>
+          </div>
+          <div class="details">
+            <h2>HALL 1: Once Upon a Time in the West</h2>
+          </div>
+        </div>
+
+        <!-- Hall 2 -->
+        <div class="hall" id="hall-2">
+          <div class="video-container">
+            <div class="video-wrapper">  
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/Nuovo Cinema Paradiso.mp4" id="video-2"></video>
+            </div>
+            <button class="play-btn" data-video-id="video-2">▶</button>
+            <button class="pause-btn" data-video-id="video-2" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-2" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-2" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 2: Nuovo Cinema Paradiso</h2>
+          </div>
+        </div>
+
+        <!-- Hall 3 -->
+        <div class="hall" id="hall-3">
+          <div class="video-container">
+            <div class="video-wrapper">  
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/Once Upon a Time in America.mp4" id="video-3"></video>
+            </div>  
+            <button class="play-btn" data-video-id="video-3">▶</button>
+            <button class="pause-btn" data-video-id="video-3" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-3" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-3" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 3: Once Upon a Time in America</h2>
+          </div>
+        </div>
+
+        <!-- Hall 4 -->
+        <div class="hall" id="hall-4">
+          <div class="video-container"> 
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video> 
+              <video class="main-video" src="assets/videos/Malena - Ennio Morricone.mp4" id="video-4"></video>
+            </div>  
+            <button class="play-btn" data-video-id="video-4">▶</button>
+            <button class="pause-btn" data-video-id="video-4" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-4" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-4" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 4: Malèna</h2>
+          </div>
+        </div>
+
+        <!-- Hall 5 -->
+        <div class="hall" id="hall-5">
+          <div class="video-container">
+            <div class="video-wrapper">  
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/For a Few Dollars More • Main Theme • Ennio Morricone.mp4" id="video-5"></video>
+            </div>
+            <button class="play-btn" data-video-id="video-5">▶</button>
+            <button class="pause-btn" data-video-id="video-5" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-5" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-5" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 5: For a Few Dollars More</h2>
+          </div>
+        </div>
+
+        <!-- Hall 6 -->
+        <div class="hall" id="hall-6">
+          <div class="video-container">  
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/A Fistful of Dollars • Main Theme • Ennio Morricone.mp4" id="video-6"></video>
+            </div>  
+            <button class="play-btn" data-video-id="video-6">▶</button>
+            <button class="pause-btn" data-video-id="video-6" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-6" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-6" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 6: A Fistful of Dollars</h2>
+          </div>
+        </div>
+
+        <!-- Hall 7 -->
+        <div class="hall" id="hall-7">
+          <div class="video-container"> 
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video> 
+              <video class="main-video" src="assets/videos/Joan Baez-Here s To You (Nicola & Bart) {lyrics} {HD}.mp4" id="video-7"></video>
+            </div>  
+            <button class="play-btn" data-video-id="video-7">▶</button>
+            <button class="pause-btn" data-video-id="video-7" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-7" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-7" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 7: Sacco e Vanzetti</h2>
+          </div>
+        </div>
+
+        <!-- Hall 8 -->
+        <div class="hall" id="hall-8">
+          <div class="video-container"> 
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video> 
+              <video class="main-video" src="assets/videos/Le Professionnel Ennio MORRICONE (Chi Mai) HD + Concert LIVE Music.mp4" id="video-8"></video>
+            </div>  
+            <button class="play-btn" data-video-id="video-8">▶</button>
+            <button class="pause-btn" data-video-id="video-8" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-8" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-8" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 8: Le Professionnel</h2>
+          </div>
+        </div>
+
+        <!-- Hall 9 -->
+        <div class="hall" id="hall-9">
+          <div class="video-container">  
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/The Good, the Bad and the Ugly • Main Theme • Ennio Morricone.mp4" id="video-9"></video>
+            </div>
+            <button class="play-btn" data-video-id="video-9">▶</button>
+            <button class="pause-btn" data-video-id="video-9" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-9" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-9" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 9: The Good, the Bad and the Ugly</h2>
+          </div>
+        </div>
+
+        <!-- Hall 10 -->
+        <div class="hall" id="hall-10">
+          <div class="video-container">  
+            <div class="video-wrapper">
+              <video class="countdown-video" src="assets/videos/Old Movie Countdown – Counting Down Clock.mp4" autoplay></video>
+              <video class="main-video" src="assets/videos/Le Marginal (1983) - Intro.mp4" id="video-10"></video>
+            </div>
+            <button class="play-btn" data-video-id="video-10">▶</button>
+            <button class="pause-btn" data-video-id="video-10" style="display: none;">⏸ Pause</button>
+            <button class="backward-btn" data-video-id="video-10" style="display: none;">⏪ Backward</button>
+            <button class="forward-btn" data-video-id="video-10" style="display: none;">⏩ Forward</button>
+          </div> 
+          <div class="details">
+            <h2>HALL 10: Le Marginal</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navigation" class="d-flex justify-content-between w-100 px-5 mt-3">
+      <button id="prev" class="btn btn-dark">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+      <button id="next" class="btn btn-dark">
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
