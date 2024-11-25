@@ -51,6 +51,7 @@ li {
   margin-bottom: 8px; /* Adjust as needed */
 }
 
+
 header:hover{
   height: 600px;
   z-index: 1000;
@@ -275,4 +276,5 @@ video::-webkit-media-controls-overlay-play-button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  transition: height 0s linear, background-position 0s linear; /* Smooth and unnoticeable */
 }

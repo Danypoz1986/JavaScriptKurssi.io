@@ -155,28 +155,43 @@ $(document).ready(function () {
   }
 
   // Navigation controls
-  $("#next").click(function () {
-    if (currentHall < totalHalls - 1) {
-      currentHall++;
-      updateHall(currentHall);
+$("#next").click(function () {
+  if (currentHall < totalHalls - 1) {
+    // Reset current video before moving to the next hall
+    const currentVideo = $(`#halls .hall:nth-child(${currentHall + 1}) .main-video`).get(0);
+    if (currentVideo) {
+      currentVideo.pause();
+      currentVideo.currentTime = 0; // Reset video time
     }
-  });
+    currentHall++;
+    updateHall(currentHall);
+  }
+});
 
-  $("#prev").click(function () {
-    if (currentHall > 0) {
-      currentHall--;
-      updateHall(currentHall);
+$("#prev").click(function () {
+  if (currentHall > 0) {
+    // Reset current video before moving to the previous hall
+    const currentVideo = $(`#halls .hall:nth-child(${currentHall + 1}) .main-video`).get(0);
+    if (currentVideo) {
+      currentVideo.pause();
+      currentVideo.currentTime = 0; // Reset video time
     }
-  });
+    currentHall--;
+    updateHall(currentHall);
+  }
+});
+
 
   // Link click event for MOVIES table
-  $("a[href^='#hall-']").click(function (e) {
-    e.preventDefault(); // Prevent default anchor behavior
-    const hallId = $(this).attr("href").replace("#hall-", ""); // Get the hall number
-    const hallIndex = parseInt(hallId) - 1; // Convert to zero-based index
-    currentHall = hallIndex; // Update the current hall
-    updateHall(currentHall); // Update the hall view
-  });
+$("a[href^='#hall-']").click(function (e) {
+  e.preventDefault(); // Prevent default anchor behavior
+  const hallId = $(this).attr("href").replace("#hall-", ""); // Get the hall number
+  const hallIndex = parseInt(hallId) - 1; // Convert to zero-based index
+  currentHall = hallIndex; // Update the current hall
+  updateHall(currentHall); // Update the hall view
+});
+
+
 
   // Initialize the first hall
   $(".hall").hide(); // Hide all halls initially
@@ -184,3 +199,28 @@ $(document).ready(function () {
   firstHall.show(); // Show the first hall
   playCountdownAndMovie(firstHall);
 });
+
+const monitorBackground = () => {
+  const headerHeight = $("header").outerHeight(); // Get header height using jQuery
+  console.log("Header height:", headerHeight); // Debugging
+
+  if (headerHeight <= 100) {
+    // Header is small, adjust background height
+    $(".cinema-background").css({
+      height: "calc(100vh - 50px)", // Adjust height
+      backgroundPosition: "center top", // Ensure alignment
+    });
+  } else if (headerHeight > 500) {
+    // Header is large, adjust background height
+    $(".cinema-background").css({
+      height: "100vh", // Full height
+      backgroundPosition: "center top", // Center alignment
+    });
+  }
+};
+
+// Call the function initially
+monitorBackground();
+
+// Dynamically monitor header height every 100ms
+setInterval(monitorBackground, 50);
