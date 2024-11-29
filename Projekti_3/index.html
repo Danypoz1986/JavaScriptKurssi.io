@@ -4,25 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ennio Morricone Tribute</title>
+  <!-- Linkitetään ulkoinen CSS-tiedosto -->
   <link rel="stylesheet" href="style.css">
+  <!-- jQuery-kirjasto -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Bootstrap-tyylit -->
   <link 
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
     crossorigin="anonymous"
   />
+  <!-- Bootstrap-ikonit -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
     rel="stylesheet"
   />
 </head>
 <body>
+
   <div id="cinema-container">
-    <!-- Header -->
+     <!-- Otsikko -->
     <header>
       <h1>Tribute to Ennio Morricone</h1>
       <div class="table-container">
+        <!-- Taulukko elokuvien esittelylle -->
         <table>
           <tr>
             <td><h1>MOVIES:</h1></td>
@@ -59,8 +65,10 @@
           </tr>
         </table>  
 
+        <!-- Otsikon kuva -->
         <img src="assets/images/ennio-morricone.webp" alt="Tribute Image">
 
+        <!-- Taulukko musiikin esittelylle -->
         <table>
           <tr>
             <td><h1>MUSIC:</h1></td>
@@ -99,182 +107,146 @@
       </div>   
     </header>
     
-    <!-- Cinema Background -->
+    <!-- Elokuvateatterin taustakuva -->
     <div class="cinema-background">
       <div id="halls">
+
         <!-- Hall 1 -->
         <div class="hall" id="hall-1">
           <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Once%20upon%20a%20time%20in%20the%20West%20(1968)%20-%20Final%20duel%20(HD).mp4" id="video-1"></video>
-            </div>  
-            <button class="play-btn" data-video-id="video-1">▶</button>
-            <button class="pause-btn" data-video-id="video-1" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-1" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-1" style="display: none;">⏩ Forward</button>
+              <!-- Countdown-video -->
+              <video class="countdown-video" style="display: none;"></video>
+              <!-- Päävideo -->
+              <video class="main-video" controls style="display: none;"></video>
+            </div>
           </div>
           <div class="details">
-            <h2>HALL 1: Once Upon a Time in the West</h2>
+            <!-- Otsikko ja muut tiedot lisätään dynaamisesti -->
           </div>
         </div>
+        
 
         <!-- Hall 2 -->
         <div class="hall" id="hall-2">
           <div class="video-container">
-            <div class="video-wrapper">  
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Nuovo%20Cinema%20Paradiso.mp4" id="video-2"></video>
+            <div class="video-wrapper">
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
             </div>
-            <button class="play-btn" data-video-id="video-2">▶</button>
-            <button class="pause-btn" data-video-id="video-2" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-2" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-2" style="display: none;">⏩ Forward</button>
-          </div> 
+          </div>
           <div class="details">
-            <h2>HALL 2: Nuovo Cinema Paradiso</h2>
+            
           </div>
         </div>
 
         <!-- Hall 3 -->
         <div class="hall" id="hall-3">
           <div class="video-container">
-            <div class="video-wrapper">  
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Once%20Upon%20a%20Time%20in%20America%20-%20A%20Visual%20Masterpiece.mp4" id="video-3"></video>
-            </div>  
-            <button class="play-btn" data-video-id="video-3">▶</button>
-            <button class="pause-btn" data-video-id="video-3" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-3" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-3" style="display: none;">⏩ Forward</button>
-          </div> 
+            <div class="video-wrapper">
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
+            </div>
+          </div>
           <div class="details">
-            <h2>HALL 3: Once Upon a Time in America</h2>
+           
           </div>
         </div>
 
         <!-- Hall 4 -->
         <div class="hall" id="hall-4">
-          <div class="video-container"> 
+          <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video> 
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Malena%20-%20Ennio%20Morricone.mp4" id="video-4"></video>
-            </div>  
-            <button class="play-btn" data-video-id="video-4">▶</button>
-            <button class="pause-btn" data-video-id="video-4" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-4" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-4" style="display: none;">⏩ Forward</button>
-          </div> 
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
+            </div>
+          </div>
           <div class="details">
-            <h2>HALL 4: Malèna</h2>
+            
           </div>
         </div>
 
         <!-- Hall 5 -->
         <div class="hall" id="hall-5">
           <div class="video-container">
-            <div class="video-wrapper">  
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/For%20a%20Few%20Dollars%20More%20%E2%80%A2%20Main%20Theme%20%E2%80%A2%20Ennio%20Morricone.mp4" id="video-5"></video>
+            <div class="video-wrapper">
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
             </div>
-            <button class="play-btn" data-video-id="video-5">▶</button>
-            <button class="pause-btn" data-video-id="video-5" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-5" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-5" style="display: none;">⏩ Forward</button>
-          </div> 
+          </div>
           <div class="details">
-            <h2>HALL 5: For a Few Dollars More</h2>
+            
           </div>
         </div>
 
         <!-- Hall 6 -->
         <div class="hall" id="hall-6">
-          <div class="video-container">  
+          <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/A%20Fistful%20of%20Dollars%20%E2%80%A2%20Main%20Theme%20%E2%80%A2%20Ennio%20Morricone.mp4" id="video-6"></video>
-            </div>  
-            <button class="play-btn" data-video-id="video-6">▶</button>
-            <button class="pause-btn" data-video-id="video-6" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-6" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-6" style="display: none;">⏩ Forward</button>
-          </div> 
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
+            </div>
+          </div>
           <div class="details">
-            <h2>HALL 6: A Fistful of Dollars</h2>
+            
           </div>
         </div>
 
         <!-- Hall 7 -->
         <div class="hall" id="hall-7">
-          <div class="video-container"> 
+          <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video> 
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Joan%20Baez-Here%20s%20To%20You%20(Nicola%20%26%20Bart)%20%7Blyrics%7D%20%7BHD%7D.mp4" id="video-7"></video>
-            </div>  
-            <button class="play-btn" data-video-id="video-7">▶</button>
-            <button class="pause-btn" data-video-id="video-7" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-7" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-7" style="display: none;">⏩ Forward</button>
-          </div> 
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
+            </div>
+          </div>
           <div class="details">
-            <h2>HALL 7: Sacco e Vanzetti</h2>
+            
           </div>
         </div>
 
         <!-- Hall 8 -->
         <div class="hall" id="hall-8">
-          <div class="video-container"> 
+          <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video> 
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Le%20Professionnel%20Ennio%20MORRICONE%20(Chi%20Mai)%20HD%20%2B%20Concert%20LIVE%20Music.mp4" id="video-8"></video>
-            </div>  
-            <button class="play-btn" data-video-id="video-8">▶</button>
-            <button class="pause-btn" data-video-id="video-8" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-8" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-8" style="display: none;">⏩ Forward</button>
-          </div> 
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
+            </div>
+          </div>
           <div class="details">
-            <h2>HALL 8: Le Professionnel</h2>
+            
           </div>
         </div>
 
         <!-- Hall 9 -->
         <div class="hall" id="hall-9">
-          <div class="video-container">  
+          <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/The%20Good%2C%20the%20Bad%20and%20the%20Ugly%20%E2%80%A2%20Main%20Theme%20%E2%80%A2%20Ennio%20Morricone.mp4" id="video-9"></video>
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
             </div>
-            <button class="play-btn" data-video-id="video-9">▶</button>
-            <button class="pause-btn" data-video-id="video-9" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-9" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-9" style="display: none;">⏩ Forward</button>
-          </div> 
+          </div>
           <div class="details">
-            <h2>HALL 9: The Good, the Bad and the Ugly</h2>
+            
           </div>
         </div>
 
         <!-- Hall 10 -->
         <div class="hall" id="hall-10">
-          <div class="video-container">  
+          <div class="video-container">
             <div class="video-wrapper">
-              <video class="countdown-video" src="https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4" autoplay></video>
-              <video class="main-video" src="https://storage.googleapis.com/p3videos/Le%20Marginal%20(1983)%20-%20Intro.mp4" id="video-10"></video>
+              <video class="countdown-video" style="display: none;"></video>
+              <video class="main-video" controls style="display: none;"></video>
             </div>
-            <button class="play-btn" data-video-id="video-10">▶</button>
-            <button class="pause-btn" data-video-id="video-10" style="display: none;">⏸ Pause</button>
-            <button class="backward-btn" data-video-id="video-10" style="display: none;">⏪ Backward</button>
-            <button class="forward-btn" data-video-id="video-10" style="display: none;">⏩ Forward</button>
-          </div> 
+          </div>
           <div class="details">
-            <h2>HALL 10: Le Marginal</h2>
+            
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigaatiopainikkeet -->
     <div id="navigation" class="d-flex justify-content-between w-100 px-5 mt-3">
       <button id="prev" class="btn btn-dark">
         <i class="bi bi-arrow-left"></i>
@@ -285,6 +257,7 @@
     </div>    
   </div>
 
+  <!-- JavaScript-koodi -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 $(document).ready(function () {
-  let currentHall = 0; // Track the current hall
-  const halls = $(".hall"); // Get all halls
-  const totalHalls = halls.length; // Total number of halls
-
-  // Add a black overlay element to the body
+  let currentHall = 0;
+  const halls = $(".hall");
+  const totalHalls = halls.length;
+  const leftArrow = $("#prev");
+  const rightArrow = $("#next");
+  let videoData = [];
   const overlay = $("<div id='black-overlay'></div>");
   $("body").append(overlay);
 
@@ -19,185 +20,255 @@ $(document).ready(function () {
     display: "none",
   });
 
+  const countdownVideoSrc = "https://storage.googleapis.com/p3videos/Old%20Movie%20Countdown%20%E2%80%93%20Counting%20Down%20Clock.mp4";
+
+  console.log("Document ready. Total halls:", totalHalls);
+
+  // Fetch video data
+  $.ajax({
+    url: "https://storage.googleapis.com/p3videos/videos.json?nocache=" + new Date().getTime(),
+    method: "GET",
+    dataType: "json",
+    success: function (data) {
+      videoData = data.videos;
+      console.log("Video data loaded successfully:", videoData);
+      initializeHalls();
+    },
+    error: function () {
+      console.error("Failed to load video data.");
+    },
+  });
+
+  function initializeHalls() {
+    console.log("Initializing halls...");
+    halls.each(function (index) {
+      const hall = $(this);
+      const countdownVideo = hall.find(".countdown-video");
+      const mainVideo = hall.find(".main-video");
+  
+      if (videoData[index]) {
+        const hallData = videoData[index];
+        countdownVideo.attr("src", countdownVideoSrc); // Set the countdown video source
+        mainVideo.attr("src", hallData.url); // Set the main video source
+  
+        console.log(`Hall ${index + 1} initialized with video URL: ${hallData.url}`);
+  
+        // Add hover effect for controls
+        mainVideo.hover(
+          function () {
+            $(this).attr("controls", "true"); // Show controls on hover
+          },
+          function () {
+            $(this).removeAttr("controls"); // Hide controls when not hovering
+          }
+        );
+      } else {
+        console.error(`No video data for Hall ${index + 1}`);
+      }
+    });
+  
+    console.log("Halls initialized.");
+    $(".hall").hide(); // Hide all halls initially
+    const firstHall = $(`#halls .hall:nth-child(${currentHall + 1})`);
+    firstHall.show(); // Directly show the first hall
+    playMovie(firstHall); // Play the movie in the first hall
+  
+    updateArrowVisibility(); // Update arrow visibility for the first hall
+  }
+  
+
+
   // Reset all videos
   function resetAllVideos() {
+    console.log("Resetting all videos...");
     $("video").each(function () {
       this.pause();
-      this.currentTime = 0; // Reset video time
-      $(this).hide(); // Hide all videos
+      this.currentTime = 0;
+      $(this).hide(); // Hide all videos initially
+      $(this).removeAttr("controls"); // Ensure controls are hidden
     });
   }
 
-  // Play countdown and then the movie
-  function playCountdownAndMovie(hallElement) {
-    const playButton = hallElement.find(".play-btn");
-    const pauseButton = hallElement.find(".pause-btn");
-    const forwardButton = hallElement.find(".forward-btn");
-    const backwardButton = hallElement.find(".backward-btn");
-  
-    $(".details").hide();
-    playButton.hide();
-    pauseButton.hide();
-    forwardButton.hide();
-    backwardButton.hide();
-  
+  function playMovie(hallElement) {
     const countdownVideo = hallElement.find(".countdown-video").get(0);
     const mainVideo = hallElement.find(".main-video").get(0);
-    const videoWrapper = hallElement.find(".video-wrapper").get(0);
-    const header = document.querySelector("header");
-  
-    // Reset all videos
+    const detailsContainer = hallElement.find(".details"); // Select the .details element
+
+    console.log("Playing movie for hall:", hallElement);
+
     resetAllVideos();
-  
+
     if (countdownVideo && mainVideo) {
-      let wasPlayingBeforeHeader; // Flag to track video state
-    
-      // Show and play the countdown video
-      $(countdownVideo).fadeIn(1000, function () {
+      console.log("Playing countdown video...");
+      $(countdownVideo).show().fadeIn(500, function () {
         countdownVideo.play();
-    
         countdownVideo.onended = function () {
-          // Hide countdown video and play main video
+          console.log("Countdown video ended, switching to main video...");
           $(countdownVideo).fadeOut(500, function () {
-            $(mainVideo).fadeIn(500, function () {
-              $(".details").show();
-              mainVideo.play(); // Play main video after fade-in
-    
-              // Monitor header state
-              const monitorHeader = () => {
-                if (header.offsetHeight > 100) {
-                    if (!mainVideo.paused) {
-                        wasPlayingBeforeHeader = true; // Remember the video was playing
-                        mainVideo.pause();
-                    } 
+            $(mainVideo).show().fadeIn(500, function () {
+              mainVideo.play();
+              console.log("Main video playing.");
+
+              // Display the title in the details section for the main video
+              const hallIndex = hallElement.index();
+              if (videoData[hallIndex]) {
+                const title = videoData[hallIndex].title;
+                detailsContainer.html(`<h2>HALL ${hallIndex + 1}: ${title}</h2>`); // Dynamically add title
+                detailsContainer.fadeIn(500); // Show the details container
+              }
+
+              // Flag to track if the video was playing
+              let wasPlaying = !mainVideo.paused;
+
+              // Monitor header height and pause/resume video
+              const headerObserver = new ResizeObserver(() => {
+                const headerHeight = $("header").outerHeight();
+                console.log(`Header height: ${headerHeight}px`);
+
+                if (headerHeight > 100) {
+                  if (!mainVideo.paused) {
+                    wasPlaying = true; // Remember that the video was playing
+                    console.log("Header height exceeded 100px. Pausing video.");
+                    mainVideo.pause();
                   }
-                  if (wasPlayingBeforeHeader && header.offsetHeight < 600){
+                } else {
+                  if (wasPlaying) {
+                    console.log("Header height is 100px or less. Resuming video.");
                     mainVideo.play();
-                    wasPlayingBeforeHeader=false;
+                    wasPlaying = false; // Reset the flag after resuming
                   }
-                  }
-              // Set an interval to monitor header height dynamically
-              const headerInterval = setInterval(monitorHeader, 100);
-    
-              // Show buttons on hover
-              $(videoWrapper).hover(
-                function () {
-                  if (mainVideo.paused) {
-                    playButton.show();
-                    forwardButton.show();
-                    backwardButton.show();
-                  } else {
-                    pauseButton.show();
-                    forwardButton.show();
-                    backwardButton.show();
-                  }
-                },
-                function () {
-                  // On hover out, hide buttons
-                  playButton.hide();
-                  forwardButton.hide();
-                  backwardButton.hide();
-                  pauseButton.hide();
-                }
-              );
-    
-              // Handle play button click
-              playButton.off("click").on("click", function () {
-                if (mainVideo.paused) {
-                  mainVideo.play();
                 }
               });
-    
-              // Handle pause button click
-              pauseButton.off("click").on("click", function () {
-                mainVideo.pause();
-              });
-    
-              forwardButton.off("click").on("click", function () {
-                mainVideo.currentTime += 10;
-              });
-    
-              backwardButton.off("click").on("click", function () {
-                mainVideo.currentTime -= 10;
-              });
-    
-              // Clear the interval when video ends
+
+              // Observe the header element
+              headerObserver.observe($("header")[0]);
+
+              // Stop observing when the video ends
               mainVideo.onended = function () {
-                clearInterval(headerInterval);
-                mainVideo.currentTime = 0;
+                headerObserver.disconnect();
+                console.log("Main video ended. Stopped observing header.");
+                detailsContainer.fadeOut(500); // Hide the details container when the main video ends
               };
             });
           });
         };
       });
-    }    
-  }
-  
-  
+    } else if (mainVideo) {
+      console.log("Playing main video directly...");
+      $(mainVideo).show().fadeIn(500, function () {
+        mainVideo.play();
+        console.log("Main video playing.");
 
-  // Update the hall view
+        // Display the title in the details section for the main video
+        const hallIndex = hallElement.index();
+        if (videoData[hallIndex]) {
+          const title = videoData[hallIndex].title;
+          detailsContainer.html(`<h2>${title}</h2>`); // Dynamically add title
+          detailsContainer.fadeIn(500); // Show the details container
+        }
+
+        // Flag to track if the video was playing
+        let wasPlaying = !mainVideo.paused;
+
+        // Monitor header height and pause/resume video
+        const headerObserver = new ResizeObserver(() => {
+          const headerHeight = $("header").outerHeight();
+          console.log(`Header height: ${headerHeight}px`);
+
+          if (headerHeight > 100) {
+            if (!mainVideo.paused) {
+              wasPlaying = true; // Remember that the video was playing
+              console.log("Header height exceeded 100px. Pausing video.");
+              mainVideo.pause();
+            }
+          } else {
+            if (wasPlaying) {
+              console.log("Header height is 100px or less. Resuming video.");
+              mainVideo.play();
+              wasPlaying = false; // Reset the flag after resuming
+            }
+          }
+        });
+
+        // Observe the header element
+        headerObserver.observe($("header")[0]);
+
+        // Stop observing when the video ends
+        mainVideo.onended = function () {
+          headerObserver.disconnect();
+          console.log("Main video ended. Stopped observing header.");
+          detailsContainer.fadeOut(500); // Hide the details container when the main video ends
+        };
+      });
+    } else {
+      console.error("No videos found in the current hall!");
+    }
+  }
+
   function updateHall(hallIndex) {
     const currentHallElement = $(`#halls .hall:nth-child(${hallIndex + 1})`);
 
     // Show the black overlay
-    $("#black-overlay").fadeIn(1000, function () {
-      // Fade out all halls except the current one
-      $(".hall").not(currentHallElement).hide();
+    $("#black-overlay").css("display", "block").animate({ opacity: 1 }, 1000, function () {
+      $(".hall").hide(); // Hide all halls
+      currentHallElement.show(); // Show the selected hall
 
-      // Fade in the current hall
-      currentHallElement.fadeIn(1000, function () {
-        playCountdownAndMovie(currentHallElement); // Play videos for the current hall
-
-        // Hide the black overlay after the transition
-        $("#black-overlay").fadeOut(1000);
+      // Hide the black overlay after showing the new hall
+      $("#black-overlay").animate({ opacity: 0 }, 1000, function () {
+        $("#black-overlay").css("display", "none");
+        playMovie(currentHallElement); // Play the current hall's video
       });
     });
+
+    updateArrowVisibility(); // Update arrow visibility after changing halls
+  }
+
+  // Update arrow visibility
+  function updateArrowVisibility() {
+    // Ensure arrows are shown/hidden based on the current hall
+    if (currentHall === 0) {
+      leftArrow.hide(); // Hide left arrow on the first page
+    } else {
+      leftArrow.show(); // Show left arrow otherwise
+    }
+
+    if (currentHall === totalHalls - 1) {
+      rightArrow.hide(); // Hide right arrow on the last page
+    } else {
+      rightArrow.show(); // Show right arrow otherwise
+    }
   }
 
   // Navigation controls
-$("#next").click(function () {
-  if (currentHall < totalHalls - 1) {
-    // Reset current video before moving to the next hall
-    const currentVideo = $(`#halls .hall:nth-child(${currentHall + 1}) .main-video`).get(0);
-    if (currentVideo) {
-      currentVideo.pause();
-      currentVideo.currentTime = 0; // Reset video time
+  rightArrow.click(function () {
+    if (currentHall < totalHalls - 1) {
+      currentHall++;
+      console.log("Next button clicked. Current hall:", currentHall + 1);
+      updateHall(currentHall);
+    } else {
+      console.log("Already at the last hall.");
     }
-    currentHall++;
-    updateHall(currentHall);
-  }
-});
+  });
 
-$("#prev").click(function () {
-  if (currentHall > 0) {
-    // Reset current video before moving to the previous hall
-    const currentVideo = $(`#halls .hall:nth-child(${currentHall + 1}) .main-video`).get(0);
-    if (currentVideo) {
-      currentVideo.pause();
-      currentVideo.currentTime = 0; // Reset video time
+  leftArrow.click(function () {
+    if (currentHall > 0) {
+      currentHall--;
+      console.log("Previous button clicked. Current hall:", currentHall + 1);
+      updateHall(currentHall);
+    } else {
+      console.log("Already at the first hall.");
     }
-    currentHall--;
+  });
+
+  // Navigation via links
+  $("a[href^='#hall-']").click(function (e) {
+    e.preventDefault();
+    const hallId = $(this).attr("href").replace("#hall-", "");
+    const hallIndex = parseInt(hallId) - 1;
+    console.log("Hall link clicked. Navigating to Hall:", hallIndex + 1);
+    currentHall = hallIndex;
     updateHall(currentHall);
-  }
-});
-
-
-  // Link click event for MOVIES table
-$("a[href^='#hall-']").click(function (e) {
-  e.preventDefault(); // Prevent default anchor behavior
-  const hallId = $(this).attr("href").replace("#hall-", ""); // Get the hall number
-  const hallIndex = parseInt(hallId) - 1; // Convert to zero-based index
-  currentHall = hallIndex; // Update the current hall
-  updateHall(currentHall); // Update the hall view
-});
-
-
-
-  // Initialize the first hall
-  $(".hall").hide(); // Hide all halls initially
-  const firstHall = $(`#halls .hall:nth-child(${currentHall + 1})`);
-  firstHall.show(); // Show the first hall
-  playCountdownAndMovie(firstHall);
+  });
 });
 
 const monitorBackground = () => {
@@ -222,5 +293,5 @@ const monitorBackground = () => {
 // Call the function initially
 monitorBackground();
 
-// Dynamically monitor header height every 100ms
+// Dynamically monitor header height every 50ms
 setInterval(monitorBackground, 50);
