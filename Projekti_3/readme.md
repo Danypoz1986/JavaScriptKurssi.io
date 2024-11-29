@@ -88,6 +88,7 @@ Tämä sovellus on kunnianosoitus Ennio Morriconelle, yhdelle maailman tunnetuim
   - Sovellus ei ole vielä täysin responsiivinen, mutta tavoitteena on tehdä siitä     käyttäjäystävällinen myös mobiililaitteilla ja tableteilla tulevissa päivityksissä.
   - Parantaa käytettävyyttä pienemmillä näytöillä säilyttäen sisältöjen mittasuhteet ja asemoinnin.
   - Lisätä tuki erikokoisille laitteille, mukaan lukien sekä pysty- että vaakasuunnassa käytettävät näytöt.
-
+  - Pyrkiä varmistamaan, että sovellus toimii saumattomasti kaikilla nykyaikaisilla selaimilla, mukaan lukien Chrome, Edge, Safari ja Firefox.
+  
 ## Tekijänoikeus
 Tämä projekti on luotu kunnioittaen Ennio Morriconen musiikillista perintöä. Kaikki oikeudet videoihin ja musiikkiin kuuluvat alkuperäisille tekijänoikeuksien omistajille.
