@@ -92,3 +92,8 @@ Tämä sovellus on kunnianosoitus Ennio Morriconelle, yhdelle maailman tunnetuim
   
 ## Tekijänoikeus
 Tämä projekti on luotu kunnioittaen Ennio Morriconen musiikillista perintöä. Kaikki oikeudet videoihin ja musiikkiin kuuluvat alkuperäisille tekijänoikeuksien omistajille.
+
+## Resurssit
+- Projektin Raportti[]
+- Videoesitys[]
+- Sovelluksen Verkkosivusto[]
