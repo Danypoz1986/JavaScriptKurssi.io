@@ -95,5 +95,5 @@ Tämä projekti on luotu kunnioittaen Ennio Morriconen musiikillista perintöä.
 
 ## Resurssit
 - [Projektin Raportti]()
-- [Videoesitys]()
-- [Sovelluksen Verkkosivusto]()
+- [Videoesitys](https://youtu.be/f1sqwa51Ju8)
+- [Sovelluksen Verkkosivusto](https://morriconetribute.netlify.app/)
