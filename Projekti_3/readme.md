@@ -94,6 +94,6 @@ Tämä sovellus on kunnianosoitus Ennio Morriconelle, yhdelle maailman tunnetuim
 Tämä projekti on luotu kunnioittaen Ennio Morriconen musiikillista perintöä. Kaikki oikeudet videoihin ja musiikkiin kuuluvat alkuperäisille tekijänoikeuksien omistajille.
 
 ## Resurssit
-- [Projektin Raportti]()
+- [Projektin Raportti](https://storage.googleapis.com/projektin_dokumentaatio/Projekti_3.docx)
 - [Videoesitys](https://youtu.be/f1sqwa51Ju8)
 - [Sovelluksen Verkkosivusto](https://morriconetribute.netlify.app/)
