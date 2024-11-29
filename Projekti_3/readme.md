@@ -27,10 +27,6 @@ Tämä sovellus on kunnianosoitus Ennio Morriconelle, yhdelle maailman tunnetuim
   - **Kontrollit näytetään, kun hiiren osoitin on videon päällä**.
   - Tämä ominaisuus lisää käyttäjäystävällisyyttä ja pitää käyttöliittymän selkeänä.
 
-### 5. Responsiivisuus
-- Sovellus on suunniteltu toimimaan kaikilla laitteilla:
-  - Työpöytäselaimet.
-  - Mobiililaitteet ja tabletit.
 
 ---
 
@@ -87,5 +83,11 @@ Tämä sovellus on kunnianosoitus Ennio Morriconelle, yhdelle maailman tunnetuim
 ├── script.js       # JavaScript-toiminnallisuudet
 └── videos.json     # Videoiden metatiedot
 ```
+## Tulevat Kehityssuunnitelmat
+
+  - Sovellus ei ole vielä täysin responsiivinen, mutta tavoitteena on tehdä siitä     käyttäjäystävällinen myös mobiililaitteilla ja tableteilla tulevissa päivityksissä.
+  - Parantaa käytettävyyttä pienemmillä näytöillä säilyttäen sisältöjen mittasuhteet ja asemoinnin.
+  - Lisätä tuki erikokoisille laitteille, mukaan lukien sekä pysty- että vaakasuunnassa käytettävät näytöt.
+
 ## Tekijänoikeus
 Tämä projekti on luotu kunnioittaen Ennio Morriconen musiikillista perintöä. Kaikki oikeudet videoihin ja musiikkiin kuuluvat alkuperäisille tekijänoikeuksien omistajille.
