@@ -27,10 +27,7 @@ function displayAllData(){
 
 // Exercise 2
 
-const apiUrl = "http://www.omdbapi.com/?s=star+wars&apikey=cbbc6750"
-
-buttons[2].addEventListener('click', loadRawData);
-buttons[3].addEventListener('click', loadAndParseData);
+const apiUrl = "https://www.omdbapi.com/?s=star+wars&apikey=cbbc6750"
 
 function loadRawData() {
     fetch(apiUrl)
@@ -81,7 +78,7 @@ function loadRawData() {
   }
 
   function featchWeather(city){
-    const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&mode=JSON&APPID=ff64c247a136f706923d1ee0d55d71e2`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&mode=JSON&APPID=ff64c247a136f706923d1ee0d55d71e2`;
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
